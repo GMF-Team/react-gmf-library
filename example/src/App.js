@@ -7,6 +7,9 @@ import {
 	Accordion,
 	CardV9,
 	ContactV3,
+	FeatureV2,
+	FeatureV11,
+	FeatureV11BottomCenter,
 	Hero,
 	Header,
 	FooterMain,
@@ -23,6 +26,17 @@ const App = () => {
 };
 
 const Home = () => {
+	const dummyImage = [
+		{
+			publicUrl:
+				'https://cms.gmf.design/resize/image/fileadmin/_processed_/2/1/csm_test_1b3cf1f7c2.jpg',
+			properties: {
+				title: 'Titel',
+				description: 'Description',
+				originalUrl: 'fileadmin/redakteur/bilder/test.jpg',
+			},
+		},
+	];
 
 	return (
 		<>
@@ -48,22 +62,12 @@ const Home = () => {
 							type: 'minimal',
 							colPos: 100,
 							content: {
-								header: 'Hero',
-								subheader: '',
+								header: 'Hero header',
+								subheader: 'Hero subheader',
 								headerLink: '',
 								date: '0',
-								bodytext: '<p>Text</p>',
-								gallery: [
-									{
-										publicUrl:
-											'https://cms.gmf.design/resize/image/fileadmin/_processed_/2/1/csm_test_1b3cf1f7c2.jpg',
-										properties: {
-											title: 'Titel',
-											description: 'Description',
-											originalUrl: 'fileadmin/redakteur/bilder/test.jpg',
-										},
-									},
-								],
+								bodytext: '<p>Hero Text</p>',
+								gallery: dummyImage,
 							},
 						},
 					],
@@ -80,12 +84,12 @@ const Home = () => {
 							type: 'minimal',
 							colPos: 500,
 							content: {
-								header: 'Accordion 1',
-								subheader: 'Accordion 1a',
+								header: 'Accordion header 1',
+								subheader: 'Accordion subheader 1',
 								headerLink: '',
 								date: '0',
 								bodytext:
-									'<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate</p>',
+									'<p>Accordion text 1 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate</p>',
 								gallery: [],
 							},
 						},
@@ -93,12 +97,12 @@ const Home = () => {
 							type: 'minimal',
 							colPos: 500,
 							content: {
-								header: 'Accordion 2',
-								subheader: 'Accordion 2a',
+								header: 'Accordion header 2',
+								subheader: 'Accordion subheader 2',
 								headerLink: '',
 								date: '0',
 								bodytext:
-									'<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate</p>',
+									'<p>Accordion text 2 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate</p>',
 								gallery: [],
 							},
 						},
@@ -116,45 +120,25 @@ const Home = () => {
 							type: 'minimal',
 							colPos: 350,
 							content: {
-								header: 'Card V9 1',
-								subheader: '',
+								header: 'CardV9 header 1',
+								subheader: 'CardV9 subheader 1',
 								headerLink: '',
 								date: '0',
-								bodytext: '<p>Lorem ipsum dolor sit amet</p>',
-								gallery: [
-									{
-										publicUrl:
-											'https://cms.gmf.design/resize/image/fileadmin/_processed_/2/1/csm_test_06a514d2a3.jpg',
-										properties: {
-											title: null,
-											alternative: null,
-											description: null,
-										},
-									},
-								],
+								bodytext: '<p>CardV9 text 1 1Lorem ipsum dolor sit amet</p>',
+								gallery: dummyImage,
 							},
 						},
 						{
 							type: 'minimal',
 							colPos: 350,
 							content: {
-								header: 'Card V9 2',
-								subheader: '',
+								header: 'CardV9 header 2',
+								subheader: 'CardV9 subheader 2',
 								headerLink: '',
 								date: '0',
 								bodytext:
-									'<p>Laboris nisi ut aliquip ex ea commodo consequat.</p>',
-								gallery: [
-									{
-										publicUrl:
-											'https://cms.gmf.design/resize/image/fileadmin/_processed_/2/1/csm_test_06a514d2a3.jpg',
-										properties: {
-											title: null,
-											alternative: null,
-											description: null,
-										},
-									},
-								],
+									'<p>CardV9 text 2 Laboris nisi ut aliquip ex ea commodo consequat.</p>',
+								gallery: dummyImage,
 							},
 						},
 					],
@@ -166,6 +150,74 @@ const Home = () => {
 				moreButton='Mehr erfahren'
 			/>
 
+			<FeatureV2
+				contents={{
+					colPos150: [
+						{
+							type: 'minimal',
+							colPos: 150,
+							content: {
+								header: 'FeatureV2 header',
+								subheader: 'FeatureV2 subheader',
+								headerLink: '',
+								date: '0',
+								bodytext: '<p>FeatureV2 text</p>',
+								gallery: dummyImage,
+							},
+						},
+					],
+				}}
+				colPos='colPos150'
+				sectionId='featurev2'
+				sectionClass='section_featurev2'
+			/>
+
+			<FeatureV11
+				contents={{
+					colPos250: [
+						{
+							type: 'minimal',
+							colPos: 250,
+							content: {
+								header: 'FeatureV11 header',
+								subheader: 'FeatureV11 subheader',
+								headerLink: '',
+								date: '0',
+								bodytext: '<p>FeatureV11 text</p>',
+								gallery: dummyImage,
+							},
+						},
+					],
+				}}
+				colPos='colPos250'
+				sectionId='featurev11'
+				sectionClass='section_featurev11'
+			/>
+
+			<FeatureV11BottomCenter
+				contents={{
+					colPos400: [
+						{
+							type: 'minimal',
+							colPos: 400,
+							content: {
+								header: 'FeatureV11BottomCenter header',
+								subheader: 'FeatureV11BottomCenter subheader',
+								headerLink: '',
+								date: '0',
+								bodytext: '<p>FeatureV11BottomCenter text</p>',
+								gallery: dummyImage,
+							},
+						},
+					],
+				}}
+				colPos='colPos400'
+				sectionId='featurev11bottomcenter'
+				sectionClass='section_featurev11bottomcenter'
+				colWidth='col-12 col-6@md'
+				moreButton='Mehr erfahren'
+			/>
+
 			<ContactV3
 				contents={{
 					colPos550: [
@@ -173,12 +225,11 @@ const Home = () => {
 							type: 'minimal',
 							colPos: 550,
 							content: {
-								header: 'ContactV3',
-								subheader: '',
+								header: 'ContactV3 header',
+								subheader: 'ContactV3 subheader',
 								headerLink: '',
 								date: '0',
-								bodytext:
-									'<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate</p>',
+								bodytext: '<p>ContactV3 text Lorem ipsum dolor sit amet</p>',
 								gallery: [],
 							},
 						},
@@ -199,12 +250,11 @@ const Home = () => {
 							type: 'minimal',
 							colPos: 600,
 							content: {
-								header: 'FooterMain',
-								subheader: '',
+								header: 'FooterMain header',
+								subheader: 'FooterMain subheader',
 								headerLink: '',
 								date: '0',
-								bodytext:
-									'<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate</p>',
+								bodytext: '<p>FooterMain text Lorem ipsum dolor sit amet</p>',
 								gallery: [],
 							},
 						},

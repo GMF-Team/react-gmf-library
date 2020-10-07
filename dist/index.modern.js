@@ -534,6 +534,132 @@ function ContactV3(props) {
   }, submitButton))))))))));
 }
 
+function FeatureV2(props) {
+  const colPos = props.colPos ? props.colPos : null;
+  if (!colPos) console.log('Error: ColPos not defined!');
+  const contents = props.contents ? props.contents[colPos] : null;
+  const sectionClass = props.sectionClass ? props.sectionClass : null;
+  const sectionId = props.sectionId ? props.sectionId : null;
+  return /*#__PURE__*/React.createElement(React.Fragment, null, contents && contents.length && contents.map((item, index) => /*#__PURE__*/React.createElement("section", {
+    key: index,
+    className: 'feature-v2 padding-y-xl ' + sectionClass,
+    id: sectionId
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "container max-width-adaptive-lg"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "grid gap-md"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "col-4@md"
+  }, /*#__PURE__*/React.createElement(Element, {
+    data: item,
+    type: "subheader",
+    customTag: "h4"
+  })), /*#__PURE__*/React.createElement("div", {
+    className: "col-8@md"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "text-component padding-left-md@md"
+  }, /*#__PURE__*/React.createElement(Element, {
+    data: item,
+    type: "header",
+    customTag: "h2"
+  }), /*#__PURE__*/React.createElement(Element, {
+    data: item,
+    type: "bodytext"
+  }), /*#__PURE__*/React.createElement(Element, {
+    data: item,
+    type: "image",
+    width: "800",
+    height: "800"
+  }), /*#__PURE__*/React.createElement(Element, {
+    data: item,
+    type: "upload",
+    width: "400",
+    customClass: "col-12 col-6@md"
+  }))))))));
+}
+
+function FeatureV11(props) {
+  const colPos = props.colPos ? props.colPos : null;
+  if (!colPos) console.log('Error: ColPos not defined!');
+  const contents = props.contents ? props.contents[colPos] : null;
+  const sectionClass = props.sectionClass ? props.sectionClass : null;
+  const sectionId = props.sectionId ? props.sectionId : null;
+  return /*#__PURE__*/React.createElement(React.Fragment, null, contents && contents.length && contents.map((item, index) => /*#__PURE__*/React.createElement("section", {
+    key: index,
+    className: 'feature-v11 position-relative z-index-1 bg-contrast-lower ' + sectionClass,
+    id: sectionId
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "container max-width-adaptive-lg position-relative"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "grid padding-x-md padding-x-0@md"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "position-relative z-index-2 col-6@md col-5@lg"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "text-component bg padding-md padding-lg@md shadow-sm line-height-md margin-y-xxl"
+  }, /*#__PURE__*/React.createElement(Element, {
+    data: item,
+    type: "header",
+    customTag: "h1"
+  }), /*#__PURE__*/React.createElement(Element, {
+    data: item,
+    type: "bodytext"
+  }))), /*#__PURE__*/React.createElement("figure", {
+    className: "position-absolute z-index-1 top-0 right-0 height-100% col-10@md overflow-hidden"
+  }, /*#__PURE__*/React.createElement(Element, {
+    data: item,
+    type: "image",
+    width: "800",
+    height: "525"
+  })))))));
+}
+
+function FeatureV11BottomCenter(props) {
+  const colPos = props.colPos ? props.colPos : null;
+  if (!colPos) console.log('Error: ColPos not defined!');
+  const contents = props.contents ? props.contents[colPos] : null;
+  const sectionClass = props.sectionClass ? props.sectionClass : null;
+  const sectionId = props.sectionId ? props.sectionId : null;
+  const moreButton = props.moreButton ? props.moreButton : 'More';
+  const colWidth = props.colWidth ? props.colWidth : 'col-12';
+  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("section", {
+    className: 'feature-v11-bottom-center padding-y-xl position-relative z-index-1 ' + sectionClass,
+    id: sectionId
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "container max-width-adaptive-lg position-relative"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "grid gap-sm"
+  }, contents && contents.length && contents.map((item, index) => /*#__PURE__*/React.createElement("div", {
+    className: colWidth,
+    key: index
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "grid position-relative justify-center padding-x-md padding-x-0@md height-100%"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "z-index-2 col-8@md"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "text-component bg padding-md padding-lg@md shadow-sm line-height-md margin-top-xxxl"
+  }, /*#__PURE__*/React.createElement(Element, {
+    data: item,
+    type: "header",
+    customTag: "h4"
+  }), /*#__PURE__*/React.createElement(Element, {
+    data: item,
+    type: "bodytext"
+  }), /*#__PURE__*/React.createElement("a", {
+    href: item.content.headerLink && item.content.headerLink.url,
+    className: "btn btn--primary margin-top-xs",
+    target: "_blank",
+    rel: "noopener noreferrer"
+  }, moreButton))), /*#__PURE__*/React.createElement("figure", {
+    className: "position-absolute z-index-1 left-0 top-0 right-0 height-90%"
+  }, /*#__PURE__*/React.createElement(Element, {
+    data: item,
+    type: "image",
+    width: "1280",
+    height: "500",
+    imageClass: "block width-100% height-100% object-cover"
+  })))))))));
+}
+
 function ImportScript(url, id) {
   const existingScript = document.getElementById(id);
 
@@ -706,5 +832,5 @@ function FooterMain(props) {
   }, "Impressum"))))) : null;
 }
 
-export { Accordion, CardV9, ContactV3, Element, FooterMain, Header, Hero };
+export { Accordion, CardV9, ContactV3, Element, ElementHelper, FeatureV11, FeatureV11BottomCenter, FeatureV2, FooterMain, Header, Hero, ImportScript };
 //# sourceMappingURL=index.modern.js.map

@@ -622,6 +622,138 @@ function ContactV3(props) {
   }, submitButton))))))))));
 }
 
+function FeatureV2(props) {
+  var colPos = props.colPos ? props.colPos : null;
+  if (!colPos) console.log('Error: ColPos not defined!');
+  var contents = props.contents ? props.contents[colPos] : null;
+  var sectionClass = props.sectionClass ? props.sectionClass : null;
+  var sectionId = props.sectionId ? props.sectionId : null;
+  return /*#__PURE__*/React__default.createElement(React__default.Fragment, null, contents && contents.length && contents.map(function (item, index) {
+    return /*#__PURE__*/React__default.createElement("section", {
+      key: index,
+      className: 'feature-v2 padding-y-xl ' + sectionClass,
+      id: sectionId
+    }, /*#__PURE__*/React__default.createElement("div", {
+      className: "container max-width-adaptive-lg"
+    }, /*#__PURE__*/React__default.createElement("div", {
+      className: "grid gap-md"
+    }, /*#__PURE__*/React__default.createElement("div", {
+      className: "col-4@md"
+    }, /*#__PURE__*/React__default.createElement(Element, {
+      data: item,
+      type: "subheader",
+      customTag: "h4"
+    })), /*#__PURE__*/React__default.createElement("div", {
+      className: "col-8@md"
+    }, /*#__PURE__*/React__default.createElement("div", {
+      className: "text-component padding-left-md@md"
+    }, /*#__PURE__*/React__default.createElement(Element, {
+      data: item,
+      type: "header",
+      customTag: "h2"
+    }), /*#__PURE__*/React__default.createElement(Element, {
+      data: item,
+      type: "bodytext"
+    }), /*#__PURE__*/React__default.createElement(Element, {
+      data: item,
+      type: "image",
+      width: "800",
+      height: "800"
+    }), /*#__PURE__*/React__default.createElement(Element, {
+      data: item,
+      type: "upload",
+      width: "400",
+      customClass: "col-12 col-6@md"
+    }))))));
+  }));
+}
+
+function FeatureV11(props) {
+  var colPos = props.colPos ? props.colPos : null;
+  if (!colPos) console.log('Error: ColPos not defined!');
+  var contents = props.contents ? props.contents[colPos] : null;
+  var sectionClass = props.sectionClass ? props.sectionClass : null;
+  var sectionId = props.sectionId ? props.sectionId : null;
+  return /*#__PURE__*/React__default.createElement(React__default.Fragment, null, contents && contents.length && contents.map(function (item, index) {
+    return /*#__PURE__*/React__default.createElement("section", {
+      key: index,
+      className: 'feature-v11 position-relative z-index-1 bg-contrast-lower ' + sectionClass,
+      id: sectionId
+    }, /*#__PURE__*/React__default.createElement("div", {
+      className: "container max-width-adaptive-lg position-relative"
+    }, /*#__PURE__*/React__default.createElement("div", {
+      className: "grid padding-x-md padding-x-0@md"
+    }, /*#__PURE__*/React__default.createElement("div", {
+      className: "position-relative z-index-2 col-6@md col-5@lg"
+    }, /*#__PURE__*/React__default.createElement("div", {
+      className: "text-component bg padding-md padding-lg@md shadow-sm line-height-md margin-y-xxl"
+    }, /*#__PURE__*/React__default.createElement(Element, {
+      data: item,
+      type: "header",
+      customTag: "h1"
+    }), /*#__PURE__*/React__default.createElement(Element, {
+      data: item,
+      type: "bodytext"
+    }))), /*#__PURE__*/React__default.createElement("figure", {
+      className: "position-absolute z-index-1 top-0 right-0 height-100% col-10@md overflow-hidden"
+    }, /*#__PURE__*/React__default.createElement(Element, {
+      data: item,
+      type: "image",
+      width: "800",
+      height: "525"
+    })))));
+  }));
+}
+
+function FeatureV11BottomCenter(props) {
+  var colPos = props.colPos ? props.colPos : null;
+  if (!colPos) console.log('Error: ColPos not defined!');
+  var contents = props.contents ? props.contents[colPos] : null;
+  var sectionClass = props.sectionClass ? props.sectionClass : null;
+  var sectionId = props.sectionId ? props.sectionId : null;
+  var moreButton = props.moreButton ? props.moreButton : 'More';
+  var colWidth = props.colWidth ? props.colWidth : 'col-12';
+  return /*#__PURE__*/React__default.createElement(React__default.Fragment, null, /*#__PURE__*/React__default.createElement("section", {
+    className: 'feature-v11-bottom-center padding-y-xl position-relative z-index-1 ' + sectionClass,
+    id: sectionId
+  }, /*#__PURE__*/React__default.createElement("div", {
+    className: "container max-width-adaptive-lg position-relative"
+  }, /*#__PURE__*/React__default.createElement("div", {
+    className: "grid gap-sm"
+  }, contents && contents.length && contents.map(function (item, index) {
+    return /*#__PURE__*/React__default.createElement("div", {
+      className: colWidth,
+      key: index
+    }, /*#__PURE__*/React__default.createElement("div", {
+      className: "grid position-relative justify-center padding-x-md padding-x-0@md height-100%"
+    }, /*#__PURE__*/React__default.createElement("div", {
+      className: "z-index-2 col-8@md"
+    }, /*#__PURE__*/React__default.createElement("div", {
+      className: "text-component bg padding-md padding-lg@md shadow-sm line-height-md margin-top-xxxl"
+    }, /*#__PURE__*/React__default.createElement(Element, {
+      data: item,
+      type: "header",
+      customTag: "h4"
+    }), /*#__PURE__*/React__default.createElement(Element, {
+      data: item,
+      type: "bodytext"
+    }), /*#__PURE__*/React__default.createElement("a", {
+      href: item.content.headerLink && item.content.headerLink.url,
+      className: "btn btn--primary margin-top-xs",
+      target: "_blank",
+      rel: "noopener noreferrer"
+    }, moreButton))), /*#__PURE__*/React__default.createElement("figure", {
+      className: "position-absolute z-index-1 left-0 top-0 right-0 height-90%"
+    }, /*#__PURE__*/React__default.createElement(Element, {
+      data: item,
+      type: "image",
+      width: "1280",
+      height: "500",
+      imageClass: "block width-100% height-100% object-cover"
+    }))));
+  })))));
+}
+
 function ImportScript(url, id) {
   var existingScript = document.getElementById(id);
 
@@ -808,7 +940,12 @@ exports.Accordion = Accordion;
 exports.CardV9 = CardV9;
 exports.ContactV3 = ContactV3;
 exports.Element = Element;
+exports.ElementHelper = ElementHelper;
+exports.FeatureV11 = FeatureV11;
+exports.FeatureV11BottomCenter = FeatureV11BottomCenter;
+exports.FeatureV2 = FeatureV2;
 exports.FooterMain = FooterMain;
 exports.Header = Header;
 exports.Hero = Hero;
+exports.ImportScript = ImportScript;
 //# sourceMappingURL=index.js.map
