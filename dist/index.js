@@ -401,6 +401,7 @@ function Header(props) {
   var Logo = props.logo;
   var scriptFile = props.scriptFile;
   var scriptId = props.scriptId;
+  var Link = props.link;
   var showNavigation = props.showNavigation ? props.showNavigation : null;
   var menuItems = props.menuItems ? props.menuItems : null;
   var accessibilityName = props.accessibilityName ? props.accessibilityName : 'Menu';
@@ -428,7 +429,9 @@ function Header(props) {
     className: "header__container container max-width-lg"
   }, /*#__PURE__*/React__default.createElement("div", {
     className: "header__logo"
-  }, /*#__PURE__*/React__default.createElement(Logo, null)), showNavigation && /*#__PURE__*/React__default.createElement(React__default.Fragment, null, /*#__PURE__*/React__default.createElement("button", {
+  }, /*#__PURE__*/React__default.createElement(Link, {
+    to: "/"
+  }, /*#__PURE__*/React__default.createElement(Logo, null))), showNavigation && /*#__PURE__*/React__default.createElement(React__default.Fragment, null, /*#__PURE__*/React__default.createElement("button", {
     className: "btn btn--subtle header__trigger js-header__trigger padding-bottom-sm padding-top-sm padding-right-xxs padding-left-sm shadow-none",
     "aria-label": "Toggle menu",
     "aria-expanded": "false",

@@ -6,6 +6,7 @@ function Header(props) {
 	const Logo = props.logo;
 	const scriptFile = props.scriptFile;
 	const scriptId = props.scriptId;
+	const Link = props.link;
 	const showNavigation = props.showNavigation ? props.showNavigation : null;
 	const menuItems = props.menuItems ? props.menuItems : null;
 	const accessibilityName = props.accessibilityName
@@ -32,7 +33,9 @@ function Header(props) {
 		<header className='header position-fixed opacity-90% js-header '>
 			<div className='header__container container max-width-lg'>
 				<div className='header__logo'>
-					<Logo />
+					<Link to='/'>
+						<Logo />
+					</Link>
 				</div>
 
 				{showNavigation && (

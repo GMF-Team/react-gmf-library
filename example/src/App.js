@@ -29,18 +29,17 @@ const TestPage = () => {
 				logo={Logo}
 				menuItems={[
 					{
-						name: 'FeatureV2',
-						href: '#featurev2',
+						name: 'Testpage',
+						href: '#testpage',
 					},
 				]}
+				link={Link}
 			/>
 
 			<Hero
 				contents={{
 					colPos100: [
 						{
-							id: 111,
-							pid: 36,
 							type: 'minimal',
 							colPos: 100,
 							content: {
@@ -52,21 +51,11 @@ const TestPage = () => {
 								gallery: [
 									{
 										publicUrl:
-											'https://cms.gmf.design/fileadmin/_processed_/2/1/csm_test_1b3cf1f7c2.jpg',
+											'https://cms.gmf.design/resize/image/fileadmin/_processed_/2/1/csm_test_1b3cf1f7c2.jpg',
 										properties: {
-											title: null,
-											alternative: null,
-											description: null,
-											mimeType: 'image/jpeg',
-											type: 'image',
-											filename: 'csm_test_1b3cf1f7c2.jpg',
+											title: 'Titel',
+											description: 'Description',
 											originalUrl: 'fileadmin/redakteur/bilder/test.jpg',
-											uidLocal: 8,
-											fileReferenceUid: 101,
-											size: '199 KB',
-											link: null,
-											autoplay: null,
-											extension: 'jpg',
 										},
 									},
 								],
@@ -83,8 +72,6 @@ const TestPage = () => {
 				contents={{
 					colPos500: [
 						{
-							id: 124,
-							pid: 36,
 							type: 'minimal',
 							colPos: 500,
 							content: {
@@ -98,8 +85,6 @@ const TestPage = () => {
 							},
 						},
 						{
-							id: 124,
-							pid: 36,
 							type: 'minimal',
 							colPos: 500,
 							content: {
@@ -123,8 +108,6 @@ const TestPage = () => {
 				contents={{
 					colPos600: [
 						{
-							id: 124,
-							pid: 36,
 							type: 'minimal',
 							colPos: 600,
 							content: {
