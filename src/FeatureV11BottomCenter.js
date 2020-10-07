@@ -16,7 +16,7 @@ function FeatureV11BottomCenter(props) {
 		<>
 			<section
 				className={
-					'feature-v11-bottom-center padding-y-xl position-relative z-index-1 ' +
+					'section-featurev11bottomcenter padding-y-xl position-relative z-index-1 ' +
 					sectionClass
 				}
 				id={sectionId}>

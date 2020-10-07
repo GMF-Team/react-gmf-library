@@ -18,7 +18,7 @@ function Hero(props) {
 
 	return content && content.length ? (
 		<section
-			className={'hero padding-y-xxl ' + sectionClass}
+			className={'section-hero padding-y-xxl ' + sectionClass}
 			id={sectionId}
 			style={{
 				backgroundImage:

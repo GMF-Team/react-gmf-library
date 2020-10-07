@@ -21,7 +21,7 @@ function VerticalTimeline(props) {
 		<>
 			<section
 				className={
-					'position-relative z-index-1 overflow-hidden padding-y-xl ' +
+					'section-verticaltimeline position-relative z-index-1 overflow-hidden padding-y-xl ' +
 					sectionClass
 				}
 				id={sectionId}>

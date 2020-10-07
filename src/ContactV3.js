@@ -52,7 +52,7 @@ function ContactV3(props) {
 	return (
 		<>
 			<section
-				className={'contact-v3 bg-contrast-lower padding-y-xl ' + sectionClass}
+				className={'section-contactv3 padding-y-xl ' + sectionClass}
 				id={sectionId}>
 				<div className='container max-width-adaptive-lg'>
 					<div className='grid gap-sm'>
