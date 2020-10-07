@@ -10,6 +10,20 @@
 npm install --save react-gmf-library
 ```
 
+## Start Develop
+
+To get started, in one tab, run:
+
+```bash
+$ cd react-gmf-library && npm start
+```
+
+And in another tab, run the create-react-app dev server:
+
+```bash
+$ cd react-gmf-library/example && npm start
+```
+
 ## Usage
 
 ```jsx
