@@ -10,13 +10,16 @@ function FooterMain(props) {
 
 	const contents = props.contents ? props.contents[colPos] : null;
 	const sectionClass = props.sectionClass ? props.sectionClass : null;
+	const sectionId = props.sectionId ? props.sectionId : null;
 
 	useEffect(() => {
 		setContent(contents);
 	}, [contents]);
 
 	return content && content.length ? (
-		<footer className={'main-footer padding-y-lg ' + sectionClass}>
+		<footer
+			className={'main-footer padding-y-lg ' + sectionClass}
+			id={sectionId}>
 			<div className='container max-width-adaptive-lg'>
 				<div className='grid gap-lg'>
 					<div className='col-12 col-6@sm'>
@@ -38,7 +41,9 @@ function FooterMain(props) {
 					</div>
 
 					<div className='col-12 col-6@sm display@sm'>
-						<Logo />
+						<Link to='/'>
+							<Logo />
+						</Link>
 					</div>
 				</div>
 

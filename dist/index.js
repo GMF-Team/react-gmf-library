@@ -5,6 +5,7 @@ var React__default = _interopDefault(React);
 var parse = _interopDefault(require('html-react-parser'));
 var Moment = _interopDefault(require('moment'));
 require('moment/locale/de');
+var axios = _interopDefault(require('axios'));
 
 function _unsupportedIterableToArray(o, minLen) {
   if (!o) return;
@@ -384,6 +385,243 @@ function Accordion(props) {
   })))));
 }
 
+var ElementHelper = {
+  getFirstImageUrl: function getFirstImageUrl(content, pos, width, height) {
+    if (typeof content !== undefined && content[pos].content.gallery.length && typeof content[pos].content.gallery[0].publicUrl === 'string') {
+      var imageCollection = [];
+
+      for (var _iterator = _createForOfIteratorHelperLoose(content[pos].content.gallery), _step; !(_step = _iterator()).done;) {
+        var image = _step.value;
+        var imageUrl = image.publicUrl;
+        var search = process.env.REACT_APP_API_BASE_URL;
+        var replace = process.env.REACT_APP_API_BASE_URL + 'resize/image/';
+        imageCollection.push(imageUrl.replace(search, replace) + '/' + width + '/' + height);
+      }
+
+      return imageCollection[0];
+    }
+  },
+  getImages: function getImages(content, pos, width, height) {
+    if (typeof content !== undefined && content[pos].content.gallery.length && typeof content[pos].content.gallery[0].publicUrl === 'string') {
+      var imageCollection = [];
+
+      for (var _iterator2 = _createForOfIteratorHelperLoose(content[pos].content.gallery), _step2; !(_step2 = _iterator2()).done;) {
+        var image = _step2.value;
+
+        if (image.publicUrl) {
+          var imageUrl = image.publicUrl;
+          var search = process.env.REACT_APP_API_BASE_URL;
+          var replace = process.env.REACT_APP_API_BASE_URL + 'resize/image/';
+          imageCollection.push(imageUrl.replace(search, replace) + '/' + width + '/' + height);
+        }
+      }
+
+      return imageCollection.map(function (image, index) {
+        return /*#__PURE__*/React__default.createElement("img", {
+          src: image,
+          alt: "",
+          key: index
+        });
+      });
+    }
+  }
+};
+
+function CardV9(props) {
+  var colPos = props.colPos ? props.colPos : null;
+  if (!colPos) console.log('Error: ColPos not defined!');
+  var contents = props.contents ? props.contents[colPos] : null;
+  var sectionClass = props.sectionClass ? props.sectionClass : null;
+  var sectionId = props.sectionId ? props.sectionId : null;
+  var moreButton = props.moreButton ? props.moreButton : 'More';
+  var colWidth = props.colWidth ? props.colWidth : 'col-12';
+  return /*#__PURE__*/React__default.createElement("section", {
+    className: 'padding-y-xl bg-contrast-lower ' + sectionClass,
+    id: sectionId
+  }, /*#__PURE__*/React__default.createElement("div", {
+    className: "container max-width-adaptive-lg"
+  }, /*#__PURE__*/React__default.createElement("div", {
+    className: "grid gap-xs justify-center"
+  }, contents && contents.length && contents.map(function (item, index) {
+    return /*#__PURE__*/React__default.createElement("div", {
+      className: colWidth,
+      key: index
+    }, /*#__PURE__*/React__default.createElement("a", {
+      href: item.content.headerLink && item.content.headerLink.url,
+      target: "_blank",
+      rel: "noopener noreferrer",
+      className: "card-v9 card-v9--overlay-bg radius-md",
+      "aria-labelledby": "card-title-2",
+      style: {
+        backgroundImage: "url('" + ElementHelper.getFirstImageUrl(contents, index, 600, 400) + "')"
+      }
+    }, /*#__PURE__*/React__default.createElement("div", {
+      className: "card-v9__content padding-md"
+    }, /*#__PURE__*/React__default.createElement("div", {
+      className: "padding-bottom-xxxl max-width-xs"
+    }, /*#__PURE__*/React__default.createElement(Element, {
+      data: item,
+      type: "header",
+      customTag: "h2",
+      customId: 'card-title-' + index,
+      customClass: "text-xl margin-bottom-xs"
+    }), /*#__PURE__*/React__default.createElement(Element, {
+      data: item,
+      type: "subheader",
+      customTag: "h3"
+    }), /*#__PURE__*/React__default.createElement(Element, {
+      data: item,
+      type: "bodytext"
+    })), /*#__PURE__*/React__default.createElement("div", {
+      className: "margin-top-auto"
+    }, /*#__PURE__*/React__default.createElement("span", {
+      className: "card-v9__btn"
+    }, /*#__PURE__*/React__default.createElement("i", null, moreButton))))));
+  }))));
+}
+
+function ContactV3(props) {
+  var colPos = props.colPos ? props.colPos : null;
+  if (!colPos) console.log('Error: ColPos not defined!');
+  var reactAppContact = {
+    url: props.reactAppContactUrl,
+    token: props.reactAppApiContactToken
+  };
+  var contents = props.contents ? props.contents[colPos] : null;
+  var sectionClass = props.sectionClass ? props.sectionClass : null;
+  var sectionId = props.sectionId ? props.sectionId : null;
+  var submitButton = props.submitButton ? props.submitButton : 'Submit';
+
+  var _useState = React.useState(''),
+      contactName = _useState[0],
+      setContactName = _useState[1];
+
+  var _useState2 = React.useState(''),
+      contactEmail = _useState2[0],
+      setContactEmail = _useState2[1];
+
+  var _useState3 = React.useState(''),
+      contactMessage = _useState3[0],
+      setContactMessage = _useState3[1];
+
+  var _useState4 = React.useState(false),
+      formState = _useState4[0],
+      setFormState = _useState4[1];
+
+  var _useState5 = React.useState(''),
+      resultMessage = _useState5[0],
+      setResultMessage = _useState5[1];
+
+  var handleSubmit = function handleSubmit(e) {
+    e.preventDefault();
+    axios({
+      method: 'post',
+      url: reactAppContact.url,
+      headers: {
+        'content-type': 'application/json'
+      },
+      data: {
+        token: reactAppContact.token,
+        name: contactName,
+        email: contactEmail,
+        message: contactMessage
+      }
+    }).then(function (result) {
+      setContactName('');
+      setContactEmail('');
+      setContactMessage('');
+      setResultMessage(result.data.message);
+      setFormState(true);
+    })["catch"](function (error) {
+      console.log('Error message:');
+      console.log(error.message);
+    });
+  };
+
+  return /*#__PURE__*/React__default.createElement(React__default.Fragment, null, /*#__PURE__*/React__default.createElement("section", {
+    className: 'contact-v3 bg-contrast-lower padding-y-xl ' + sectionClass,
+    id: sectionId
+  }, /*#__PURE__*/React__default.createElement("div", {
+    className: "container max-width-adaptive-lg"
+  }, /*#__PURE__*/React__default.createElement("div", {
+    className: "grid gap-sm"
+  }, /*#__PURE__*/React__default.createElement("div", {
+    className: "col-6@sm col-12"
+  }, contents && contents.length && contents.map(function (item, index) {
+    return /*#__PURE__*/React__default.createElement("div", {
+      className: "text-component",
+      key: index
+    }, /*#__PURE__*/React__default.createElement(Element, {
+      data: item,
+      type: "header",
+      customTag: "h4"
+    }), /*#__PURE__*/React__default.createElement(Element, {
+      data: item,
+      type: "bodytext"
+    }), /*#__PURE__*/React__default.createElement(Element, {
+      data: item,
+      type: "image",
+      width: "1280",
+      height: "500",
+      imageClass: "block width-100% height-100% object-cover"
+    }));
+  })), /*#__PURE__*/React__default.createElement("div", {
+    className: "col-6@sm col-12"
+  }, formState ? /*#__PURE__*/React__default.createElement(React__default.Fragment, null, /*#__PURE__*/React__default.createElement("p", null, resultMessage)) : /*#__PURE__*/React__default.createElement(React__default.Fragment, null, /*#__PURE__*/React__default.createElement("form", {
+    onSubmit: handleSubmit
+  }, /*#__PURE__*/React__default.createElement("div", {
+    className: "margin-bottom-sm"
+  }, /*#__PURE__*/React__default.createElement("div", {
+    className: "margin-bottom-sm"
+  }, /*#__PURE__*/React__default.createElement("label", {
+    className: "form-label margin-bottom-xxs",
+    htmlFor: "contactName"
+  }, "Name"), /*#__PURE__*/React__default.createElement("input", {
+    className: "form-control width-100%",
+    type: "text",
+    name: "contactName",
+    id: "contactName",
+    value: contactName,
+    onChange: function onChange(e) {
+      return setContactName(e.target.value);
+    },
+    required: true
+  })), /*#__PURE__*/React__default.createElement("div", {
+    className: "margin-bottom-sm"
+  }, /*#__PURE__*/React__default.createElement("label", {
+    className: "form-label margin-bottom-xxs",
+    htmlFor: "contactEmail"
+  }, "Email"), /*#__PURE__*/React__default.createElement("input", {
+    className: "form-control width-100%",
+    type: "email",
+    name: "contactEmail",
+    id: "contactEmail",
+    value: contactEmail,
+    onChange: function onChange(e) {
+      return setContactEmail(e.target.value);
+    },
+    required: true
+  })), /*#__PURE__*/React__default.createElement("div", {
+    className: "margin-bottom-sm"
+  }, /*#__PURE__*/React__default.createElement("label", {
+    className: "form-label margin-bottom-xxs",
+    htmlFor: "contactMessage"
+  }, "Nachricht"), /*#__PURE__*/React__default.createElement("textarea", {
+    className: "form-control width-100%",
+    rows: "9",
+    name: "contactMessage",
+    id: "contactMessage",
+    value: contactMessage,
+    onChange: function onChange(e) {
+      return setContactMessage(e.target.value);
+    }
+  })), /*#__PURE__*/React__default.createElement("div", {
+    className: "text-right"
+  }, /*#__PURE__*/React__default.createElement("button", {
+    className: "btn btn--primary"
+  }, submitButton))))))))));
+}
+
 function ImportScript(url, id) {
   var existingScript = document.getElementById(id);
 
@@ -464,48 +702,6 @@ function Header(props) {
   })))))));
 }
 
-var ElementHelper = {
-  getFirstImageUrl: function getFirstImageUrl(content, pos, width, height) {
-    if (typeof content !== undefined && content[pos].content.gallery.length && typeof content[pos].content.gallery[0].publicUrl === 'string') {
-      var imageCollection = [];
-
-      for (var _iterator = _createForOfIteratorHelperLoose(content[pos].content.gallery), _step; !(_step = _iterator()).done;) {
-        var image = _step.value;
-        var imageUrl = image.publicUrl;
-        var search = process.env.REACT_APP_API_BASE_URL;
-        var replace = process.env.REACT_APP_API_BASE_URL + 'resize/image/';
-        imageCollection.push(imageUrl.replace(search, replace) + '/' + width + '/' + height);
-      }
-
-      return imageCollection[0];
-    }
-  },
-  getImages: function getImages(content, pos, width, height) {
-    if (typeof content !== undefined && content[pos].content.gallery.length && typeof content[pos].content.gallery[0].publicUrl === 'string') {
-      var imageCollection = [];
-
-      for (var _iterator2 = _createForOfIteratorHelperLoose(content[pos].content.gallery), _step2; !(_step2 = _iterator2()).done;) {
-        var image = _step2.value;
-
-        if (image.publicUrl) {
-          var imageUrl = image.publicUrl;
-          var search = process.env.REACT_APP_API_BASE_URL;
-          var replace = process.env.REACT_APP_API_BASE_URL + 'resize/image/';
-          imageCollection.push(imageUrl.replace(search, replace) + '/' + width + '/' + height);
-        }
-      }
-
-      return imageCollection.map(function (image, index) {
-        return /*#__PURE__*/React__default.createElement("img", {
-          src: image,
-          alt: "",
-          key: index
-        });
-      });
-    }
-  }
-};
-
 function Hero(props) {
   var _useState = React.useState([]),
       content = _useState[0],
@@ -556,11 +752,13 @@ function FooterMain(props) {
   if (!colPos) console.log('Error: ColPos not defined!');
   var contents = props.contents ? props.contents[colPos] : null;
   var sectionClass = props.sectionClass ? props.sectionClass : null;
+  var sectionId = props.sectionId ? props.sectionId : null;
   React.useEffect(function () {
     setContent(contents);
   }, [contents]);
   return content && content.length ? /*#__PURE__*/React__default.createElement("footer", {
-    className: 'main-footer padding-y-lg ' + sectionClass
+    className: 'main-footer padding-y-lg ' + sectionClass,
+    id: sectionId
   }, /*#__PURE__*/React__default.createElement("div", {
     className: "container max-width-adaptive-lg"
   }, /*#__PURE__*/React__default.createElement("div", {
@@ -591,7 +789,9 @@ function FooterMain(props) {
     })));
   })), /*#__PURE__*/React__default.createElement("div", {
     className: "col-12 col-6@sm display@sm"
-  }, /*#__PURE__*/React__default.createElement(Logo, null))), /*#__PURE__*/React__default.createElement("div", {
+  }, /*#__PURE__*/React__default.createElement(Link, {
+    to: "/"
+  }, /*#__PURE__*/React__default.createElement(Logo, null)))), /*#__PURE__*/React__default.createElement("div", {
     className: "border-top padding-top-xs margin-top-lg flex justify-end"
   }, /*#__PURE__*/React__default.createElement("div", {
     className: "text-sm"
@@ -605,6 +805,8 @@ function FooterMain(props) {
 }
 
 exports.Accordion = Accordion;
+exports.CardV9 = CardV9;
+exports.ContactV3 = ContactV3;
 exports.Element = Element;
 exports.FooterMain = FooterMain;
 exports.Header = Header;

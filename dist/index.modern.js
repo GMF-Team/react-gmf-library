@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import parse from 'html-react-parser';
 import Moment from 'moment';
 import 'moment/locale/de';
+import axios from 'axios';
 
 function Element(props) {
   const type = props.type;
@@ -326,6 +327,213 @@ function Accordion(props) {
   })))))))));
 }
 
+const ElementHelper = {
+  getFirstImageUrl: (content, pos, width, height) => {
+    if (typeof content !== undefined && content[pos].content.gallery.length && typeof content[pos].content.gallery[0].publicUrl === 'string') {
+      let imageCollection = [];
+
+      for (var image of content[pos].content.gallery) {
+        let imageUrl = image.publicUrl;
+        let search = process.env.REACT_APP_API_BASE_URL;
+        let replace = process.env.REACT_APP_API_BASE_URL + 'resize/image/';
+        imageCollection.push(imageUrl.replace(search, replace) + '/' + width + '/' + height);
+      }
+
+      return imageCollection[0];
+    }
+  },
+  getImages: (content, pos, width, height) => {
+    if (typeof content !== undefined && content[pos].content.gallery.length && typeof content[pos].content.gallery[0].publicUrl === 'string') {
+      let imageCollection = [];
+
+      for (var image of content[pos].content.gallery) {
+        if (image.publicUrl) {
+          let imageUrl = image.publicUrl;
+          let search = process.env.REACT_APP_API_BASE_URL;
+          let replace = process.env.REACT_APP_API_BASE_URL + 'resize/image/';
+          imageCollection.push(imageUrl.replace(search, replace) + '/' + width + '/' + height);
+        }
+      }
+
+      return imageCollection.map((image, index) => /*#__PURE__*/React.createElement("img", {
+        src: image,
+        alt: "",
+        key: index
+      }));
+    }
+  }
+};
+
+function CardV9(props) {
+  const colPos = props.colPos ? props.colPos : null;
+  if (!colPos) console.log('Error: ColPos not defined!');
+  const contents = props.contents ? props.contents[colPos] : null;
+  const sectionClass = props.sectionClass ? props.sectionClass : null;
+  const sectionId = props.sectionId ? props.sectionId : null;
+  const moreButton = props.moreButton ? props.moreButton : 'More';
+  const colWidth = props.colWidth ? props.colWidth : 'col-12';
+  return /*#__PURE__*/React.createElement("section", {
+    className: 'padding-y-xl bg-contrast-lower ' + sectionClass,
+    id: sectionId
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "container max-width-adaptive-lg"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "grid gap-xs justify-center"
+  }, contents && contents.length && contents.map((item, index) => /*#__PURE__*/React.createElement("div", {
+    className: colWidth,
+    key: index
+  }, /*#__PURE__*/React.createElement("a", {
+    href: item.content.headerLink && item.content.headerLink.url,
+    target: "_blank",
+    rel: "noopener noreferrer",
+    className: "card-v9 card-v9--overlay-bg radius-md",
+    "aria-labelledby": "card-title-2",
+    style: {
+      backgroundImage: "url('" + ElementHelper.getFirstImageUrl(contents, index, 600, 400) + "')"
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "card-v9__content padding-md"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "padding-bottom-xxxl max-width-xs"
+  }, /*#__PURE__*/React.createElement(Element, {
+    data: item,
+    type: "header",
+    customTag: "h2",
+    customId: 'card-title-' + index,
+    customClass: "text-xl margin-bottom-xs"
+  }), /*#__PURE__*/React.createElement(Element, {
+    data: item,
+    type: "subheader",
+    customTag: "h3"
+  }), /*#__PURE__*/React.createElement(Element, {
+    data: item,
+    type: "bodytext"
+  })), /*#__PURE__*/React.createElement("div", {
+    className: "margin-top-auto"
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "card-v9__btn"
+  }, /*#__PURE__*/React.createElement("i", null, moreButton))))))))));
+}
+
+function ContactV3(props) {
+  const colPos = props.colPos ? props.colPos : null;
+  if (!colPos) console.log('Error: ColPos not defined!');
+  const reactAppContact = {
+    url: props.reactAppContactUrl,
+    token: props.reactAppApiContactToken
+  };
+  const contents = props.contents ? props.contents[colPos] : null;
+  const sectionClass = props.sectionClass ? props.sectionClass : null;
+  const sectionId = props.sectionId ? props.sectionId : null;
+  const submitButton = props.submitButton ? props.submitButton : 'Submit';
+  const [contactName, setContactName] = useState('');
+  const [contactEmail, setContactEmail] = useState('');
+  const [contactMessage, setContactMessage] = useState('');
+  const [formState, setFormState] = useState(false);
+  const [resultMessage, setResultMessage] = useState('');
+
+  const handleSubmit = e => {
+    e.preventDefault();
+    axios({
+      method: 'post',
+      url: reactAppContact.url,
+      headers: {
+        'content-type': 'application/json'
+      },
+      data: {
+        token: reactAppContact.token,
+        name: contactName,
+        email: contactEmail,
+        message: contactMessage
+      }
+    }).then(result => {
+      setContactName('');
+      setContactEmail('');
+      setContactMessage('');
+      setResultMessage(result.data.message);
+      setFormState(true);
+    }).catch(error => {
+      console.log('Error message:');
+      console.log(error.message);
+    });
+  };
+
+  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("section", {
+    className: 'contact-v3 bg-contrast-lower padding-y-xl ' + sectionClass,
+    id: sectionId
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "container max-width-adaptive-lg"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "grid gap-sm"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "col-6@sm col-12"
+  }, contents && contents.length && contents.map((item, index) => /*#__PURE__*/React.createElement("div", {
+    className: "text-component",
+    key: index
+  }, /*#__PURE__*/React.createElement(Element, {
+    data: item,
+    type: "header",
+    customTag: "h4"
+  }), /*#__PURE__*/React.createElement(Element, {
+    data: item,
+    type: "bodytext"
+  }), /*#__PURE__*/React.createElement(Element, {
+    data: item,
+    type: "image",
+    width: "1280",
+    height: "500",
+    imageClass: "block width-100% height-100% object-cover"
+  })))), /*#__PURE__*/React.createElement("div", {
+    className: "col-6@sm col-12"
+  }, formState ? /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("p", null, resultMessage)) : /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("form", {
+    onSubmit: handleSubmit
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "margin-bottom-sm"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "margin-bottom-sm"
+  }, /*#__PURE__*/React.createElement("label", {
+    className: "form-label margin-bottom-xxs",
+    htmlFor: "contactName"
+  }, "Name"), /*#__PURE__*/React.createElement("input", {
+    className: "form-control width-100%",
+    type: "text",
+    name: "contactName",
+    id: "contactName",
+    value: contactName,
+    onChange: e => setContactName(e.target.value),
+    required: true
+  })), /*#__PURE__*/React.createElement("div", {
+    className: "margin-bottom-sm"
+  }, /*#__PURE__*/React.createElement("label", {
+    className: "form-label margin-bottom-xxs",
+    htmlFor: "contactEmail"
+  }, "Email"), /*#__PURE__*/React.createElement("input", {
+    className: "form-control width-100%",
+    type: "email",
+    name: "contactEmail",
+    id: "contactEmail",
+    value: contactEmail,
+    onChange: e => setContactEmail(e.target.value),
+    required: true
+  })), /*#__PURE__*/React.createElement("div", {
+    className: "margin-bottom-sm"
+  }, /*#__PURE__*/React.createElement("label", {
+    className: "form-label margin-bottom-xxs",
+    htmlFor: "contactMessage"
+  }, "Nachricht"), /*#__PURE__*/React.createElement("textarea", {
+    className: "form-control width-100%",
+    rows: "9",
+    name: "contactMessage",
+    id: "contactMessage",
+    value: contactMessage,
+    onChange: e => setContactMessage(e.target.value)
+  })), /*#__PURE__*/React.createElement("div", {
+    className: "text-right"
+  }, /*#__PURE__*/React.createElement("button", {
+    className: "btn btn--primary"
+  }, submitButton))))))))));
+}
+
 function ImportScript(url, id) {
   const existingScript = document.getElementById(id);
 
@@ -404,43 +612,6 @@ function Header(props) {
   }, item.name)))))))));
 }
 
-const ElementHelper = {
-  getFirstImageUrl: (content, pos, width, height) => {
-    if (typeof content !== undefined && content[pos].content.gallery.length && typeof content[pos].content.gallery[0].publicUrl === 'string') {
-      let imageCollection = [];
-
-      for (var image of content[pos].content.gallery) {
-        let imageUrl = image.publicUrl;
-        let search = process.env.REACT_APP_API_BASE_URL;
-        let replace = process.env.REACT_APP_API_BASE_URL + 'resize/image/';
-        imageCollection.push(imageUrl.replace(search, replace) + '/' + width + '/' + height);
-      }
-
-      return imageCollection[0];
-    }
-  },
-  getImages: (content, pos, width, height) => {
-    if (typeof content !== undefined && content[pos].content.gallery.length && typeof content[pos].content.gallery[0].publicUrl === 'string') {
-      let imageCollection = [];
-
-      for (var image of content[pos].content.gallery) {
-        if (image.publicUrl) {
-          let imageUrl = image.publicUrl;
-          let search = process.env.REACT_APP_API_BASE_URL;
-          let replace = process.env.REACT_APP_API_BASE_URL + 'resize/image/';
-          imageCollection.push(imageUrl.replace(search, replace) + '/' + width + '/' + height);
-        }
-      }
-
-      return imageCollection.map((image, index) => /*#__PURE__*/React.createElement("img", {
-        src: image,
-        alt: "",
-        key: index
-      }));
-    }
-  }
-};
-
 function Hero(props) {
   const [content, setContent] = useState([]);
   const colPos = props.colPos ? props.colPos : null;
@@ -485,11 +656,13 @@ function FooterMain(props) {
   if (!colPos) console.log('Error: ColPos not defined!');
   const contents = props.contents ? props.contents[colPos] : null;
   const sectionClass = props.sectionClass ? props.sectionClass : null;
+  const sectionId = props.sectionId ? props.sectionId : null;
   useEffect(() => {
     setContent(contents);
   }, [contents]);
   return content && content.length ? /*#__PURE__*/React.createElement("footer", {
-    className: 'main-footer padding-y-lg ' + sectionClass
+    className: 'main-footer padding-y-lg ' + sectionClass,
+    id: sectionId
   }, /*#__PURE__*/React.createElement("div", {
     className: "container max-width-adaptive-lg"
   }, /*#__PURE__*/React.createElement("div", {
@@ -518,7 +691,9 @@ function FooterMain(props) {
     customClass: "col-12"
   }))))), /*#__PURE__*/React.createElement("div", {
     className: "col-12 col-6@sm display@sm"
-  }, /*#__PURE__*/React.createElement(Logo, null))), /*#__PURE__*/React.createElement("div", {
+  }, /*#__PURE__*/React.createElement(Link, {
+    to: "/"
+  }, /*#__PURE__*/React.createElement(Logo, null)))), /*#__PURE__*/React.createElement("div", {
     className: "border-top padding-top-xs margin-top-lg flex justify-end"
   }, /*#__PURE__*/React.createElement("div", {
     className: "text-sm"
@@ -531,5 +706,5 @@ function FooterMain(props) {
   }, "Impressum"))))) : null;
 }
 
-export { Accordion, Element, FooterMain, Header, Hero };
+export { Accordion, CardV9, ContactV3, Element, FooterMain, Header, Hero };
 //# sourceMappingURL=index.modern.js.map
