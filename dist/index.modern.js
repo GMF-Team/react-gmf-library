@@ -1,135 +1,16 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import parse from 'html-react-parser';
 import Moment from 'moment';
 import 'moment/locale/de';
 
-function ImportScript(url, id) {
-  var existingScript = document.getElementById(id);
-
-  if (existingScript) {
-    existingScript.remove();
-  }
-
-  var script = document.createElement('script');
-  script.src = url;
-  script.id = id;
-  document.body.appendChild(script);
-}
-
-function Header(props) {
-  var Logo = props.logo;
-  var scriptFile = props.scriptFile;
-  var scriptId = props.scriptId;
-  var showNavigation = props.showNavigation ? props.showNavigation : null;
-  var menuItems = props.menuItems ? props.menuItems : null;
-  var accessibilityName = props.accessibilityName ? props.accessibilityName : 'Menu';
-  useEffect(function () {
-    if (showNavigation) {
-      ImportScript(scriptFile, scriptId);
-    }
-  }, [showNavigation, scriptFile, scriptId]);
-
-  var handleHeaderChange = function handleHeaderChange(evt) {
-    evt.preventDefault();
-    var elementId = evt.target.hash.replace('#', '');
-    var scrollPoint = document.getElementById(elementId);
-    var yOffset = -125;
-    var y = scrollPoint.getBoundingClientRect().top + window.pageYOffset + yOffset;
-    window.scrollTo({
-      top: y,
-      behavior: 'smooth'
-    });
-  };
-
-  return /*#__PURE__*/React.createElement("header", {
-    className: "header position-fixed opacity-90% js-header "
-  }, /*#__PURE__*/React.createElement("div", {
-    className: "header__container container max-width-lg"
-  }, /*#__PURE__*/React.createElement("div", {
-    className: "header__logo"
-  }, /*#__PURE__*/React.createElement(Logo, null)), showNavigation && /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("button", {
-    className: "btn btn--subtle header__trigger js-header__trigger padding-bottom-sm padding-top-sm padding-right-xxs padding-left-sm shadow-none",
-    "aria-label": "Toggle menu",
-    "aria-expanded": "false",
-    "aria-controls": "header-nav"
-  }, /*#__PURE__*/React.createElement("i", {
-    className: "header__trigger-icon",
-    "aria-hidden": "true"
-  }), /*#__PURE__*/React.createElement("span", {
-    className: "sr-only"
-  }, accessibilityName)), /*#__PURE__*/React.createElement("nav", {
-    className: "header__nav js-header__nav",
-    id: "header-nav",
-    role: "navigation",
-    "aria-label": "Main"
-  }, /*#__PURE__*/React.createElement("div", {
-    className: "header__nav-inner"
-  }, /*#__PURE__*/React.createElement("div", {
-    className: "header__label sr-only"
-  }, accessibilityName), /*#__PURE__*/React.createElement("ul", {
-    className: "header__list"
-  }, menuItems && menuItems.length && menuItems.map(function (item, index) {
-    return /*#__PURE__*/React.createElement("li", {
-      className: "header__item",
-      key: index
-    }, /*#__PURE__*/React.createElement("a", {
-      href: item.href,
-      className: "header__link",
-      onClick: handleHeaderChange
-    }, item.name));
-  })))))));
-}
-
-function _unsupportedIterableToArray(o, minLen) {
-  if (!o) return;
-  if (typeof o === "string") return _arrayLikeToArray(o, minLen);
-  var n = Object.prototype.toString.call(o).slice(8, -1);
-  if (n === "Object" && o.constructor) n = o.constructor.name;
-  if (n === "Map" || n === "Set") return Array.from(o);
-  if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen);
-}
-
-function _arrayLikeToArray(arr, len) {
-  if (len == null || len > arr.length) len = arr.length;
-
-  for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i];
-
-  return arr2;
-}
-
-function _createForOfIteratorHelperLoose(o, allowArrayLike) {
-  var it;
-
-  if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) {
-    if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") {
-      if (it) o = it;
-      var i = 0;
-      return function () {
-        if (i >= o.length) return {
-          done: true
-        };
-        return {
-          done: false,
-          value: o[i++]
-        };
-      };
-    }
-
-    throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
-  }
-
-  it = o[Symbol.iterator]();
-  return it.next.bind(it);
-}
-
 function Element(props) {
-  var type = props.type;
-  var data = props.data;
-  var CustomTag = props.customTag ? "" + props.customTag : "div";
-  var customId = props.customId;
-  var customClass = props.customClass;
+  const type = props.type;
+  const data = props.data;
+  const CustomTag = props.customTag ? `${props.customTag}` : `div`;
+  const customId = props.customId;
+  const customClass = props.customClass;
 
-  var parseHeader = function parseHeader() {
+  const parseHeader = () => {
     if (typeof data.content.header !== undefined && data.content.header && type === 'header') return /*#__PURE__*/React.createElement(CustomTag, {
       className: customClass,
       id: customId
@@ -141,7 +22,7 @@ function Element(props) {
     return null;
   };
 
-  var parseSubHeader = function parseSubHeader() {
+  const parseSubHeader = () => {
     if (typeof data.content.subheader !== undefined && data.content.subheader && type === 'subheader') return /*#__PURE__*/React.createElement(CustomTag, {
       className: customClass,
       id: customId
@@ -153,7 +34,7 @@ function Element(props) {
     return null;
   };
 
-  var parseDate = function parseDate() {
+  const parseDate = () => {
     if (typeof data.content.date !== undefined && data.content.date && type === 'date') return /*#__PURE__*/React.createElement(CustomTag, {
       className: customClass,
       id: customId
@@ -165,7 +46,7 @@ function Element(props) {
     return null;
   };
 
-  var parseBodytext = function parseBodytext() {
+  const parseBodytext = () => {
     if (typeof data.content.bodytext === 'string' && type === 'bodytext') return /*#__PURE__*/React.createElement(CustomTag, null, parse(data.content.bodytext));
 
     if (typeof data.content.bodytext === 'object' && type === 'bodytext') {
@@ -176,38 +57,35 @@ function Element(props) {
     return null;
   };
 
-  var parseImage = function parseImage() {
+  const parseImage = () => {
     if (data.content.gallery.length > 0 && type === 'image') {
-      var width = props.width;
-      var height = props.height;
-      var imageClass = props.imageClass;
-      var imageCollection = [];
+      const width = props.width;
+      const height = props.height;
+      const imageClass = props.imageClass;
+      let imageCollection = [];
 
-      for (var _iterator = _createForOfIteratorHelperLoose(data.content.gallery), _step; !(_step = _iterator()).done;) {
-        var image = _step.value;
-        var imageUrl = image.publicUrl;
-        var search = process.env.REACT_APP_API_BASE_URL;
-        var replace = process.env.REACT_APP_API_BASE_URL + 'resize/image/';
+      for (var image of data.content.gallery) {
+        let imageUrl = image.publicUrl;
+        let search = process.env.REACT_APP_API_BASE_URL;
+        let replace = process.env.REACT_APP_API_BASE_URL + 'resize/image/';
         imageCollection.push(imageUrl.replace(search, replace) + '/' + width + '/' + height);
       }
 
-      return imageCollection.map(function (image, index) {
-        return /*#__PURE__*/React.createElement("img", {
-          src: image,
-          alt: "",
-          key: index,
-          className: imageClass
-        });
-      });
+      return imageCollection.map((image, index) => /*#__PURE__*/React.createElement("img", {
+        src: image,
+        alt: "",
+        key: index,
+        className: imageClass
+      }));
     } else {
       return null;
     }
   };
 
-  var parseTable = function parseTable() {
-    var dataRows = [];
+  const parseTable = () => {
+    let dataRows = [];
     data.content.bodytext.forEach(function (rows, rowKey) {
-      var dataCells = [];
+      let dataCells = [];
       rows.forEach(function (cell, cellKey) {
         dataCells.push( /*#__PURE__*/React.createElement("td", {
           key: cellKey,
@@ -230,17 +108,16 @@ function Element(props) {
     }, dataRows));
   };
 
-  var parseDownload = function parseDownload() {
+  const parseDownload = () => {
     if (data.content.media.length > 0 && type === 'upload') {
-      var width = props.width;
-      var height = 0;
-      var mediaCollection = [];
+      const width = props.width;
+      const height = 0;
+      let mediaCollection = [];
 
-      for (var _iterator2 = _createForOfIteratorHelperLoose(data.content.media), _step2; !(_step2 = _iterator2()).done;) {
-        var media = _step2.value;
-        var mediaUrl = media.publicUrl;
-        var search = process.env.REACT_APP_API_BASE_URL;
-        var replace = process.env.REACT_APP_API_BASE_URL + 'resize/image/';
+      for (var media of data.content.media) {
+        let mediaUrl = media.publicUrl;
+        let search = process.env.REACT_APP_API_BASE_URL;
+        let replace = process.env.REACT_APP_API_BASE_URL + 'resize/image/';
         mediaCollection.push({
           title: media.properties.title ? media.properties.title : '',
           description: media.properties.description ? media.properties.description : '',
@@ -253,39 +130,37 @@ function Element(props) {
       return /*#__PURE__*/React.createElement("div", {
         className: "grid gap-sm",
         id: customId
-      }, mediaCollection.map(function (media, index) {
-        return /*#__PURE__*/React.createElement("div", {
-          className: 'thumbnail ' + customClass,
-          key: index
-        }, /*#__PURE__*/React.createElement("a", {
-          href: media.publicUrl,
-          className: "text-decoration-none color-contrast-medium",
-          alt: media.description,
-          target: "blank"
-        }, /*#__PURE__*/React.createElement("div", {
-          className: "grid gap-sm margin-bottom-sm"
-        }, /*#__PURE__*/React.createElement("div", {
-          className: "col-3 col-4@md"
-        }, /*#__PURE__*/React.createElement("img", {
-          src: media.url,
-          alt: media.description,
-          key: index
-        })), /*#__PURE__*/React.createElement("div", {
-          className: "col-12 col-8@md text-component"
-        }, media.filename && /*#__PURE__*/React.createElement("div", {
-          className: "filename_url"
-        }, media.filename), media.title && /*#__PURE__*/React.createElement("div", {
-          className: "filename_title text-sm margin-top-sm"
-        }, media.title), media.description && /*#__PURE__*/React.createElement("div", {
-          className: "filename_description text-sm margin-top-sm"
-        }, media.description)))));
-      }));
+      }, mediaCollection.map((media, index) => /*#__PURE__*/React.createElement("div", {
+        className: 'thumbnail ' + customClass,
+        key: index
+      }, /*#__PURE__*/React.createElement("a", {
+        href: media.publicUrl,
+        className: "text-decoration-none color-contrast-medium",
+        alt: media.description,
+        target: "blank"
+      }, /*#__PURE__*/React.createElement("div", {
+        className: "grid gap-sm margin-bottom-sm"
+      }, /*#__PURE__*/React.createElement("div", {
+        className: "col-3 col-4@md"
+      }, /*#__PURE__*/React.createElement("img", {
+        src: media.url,
+        alt: media.description,
+        key: index
+      })), /*#__PURE__*/React.createElement("div", {
+        className: "col-12 col-8@md text-component"
+      }, media.filename && /*#__PURE__*/React.createElement("div", {
+        className: "filename_url"
+      }, media.filename), media.title && /*#__PURE__*/React.createElement("div", {
+        className: "filename_title text-sm margin-top-sm"
+      }, media.title), media.description && /*#__PURE__*/React.createElement("div", {
+        className: "filename_description text-sm margin-top-sm"
+      }, media.description)))))));
     } else {
       return null;
     }
   };
 
-  var out = null;
+  let out = null;
 
   switch (data.type + '-' + type) {
     case 'minimal-header':
@@ -385,24 +260,21 @@ function Element(props) {
       break;
 
     default:
-      console.log("Sorry, No " + data.type + " for " + type + " type found for rendering.");
+      console.log(`Sorry, No ${data.type} for ${type} type found for rendering.`);
   }
 
   return out;
 }
 
 function Accordion(props) {
-  var colPos = props.colPos ? props.colPos : null;
+  const colPos = props.colPos ? props.colPos : null;
   if (!colPos) console.log('Error: ColPos not defined!');
-  var contents = props.contents ? props.contents[colPos] : null;
-  var sectionClass = props.sectionClass ? props.sectionClass : null;
-  var sectionId = props.sectionId ? props.sectionId : null;
+  const contents = props.contents ? props.contents[colPos] : null;
+  const sectionClass = props.sectionClass ? props.sectionClass : null;
+  const sectionId = props.sectionId ? props.sectionId : null;
+  const [accordionActive, setAccordionState] = useState(-1);
 
-  var _useState = useState(-1),
-      accordionActive = _useState[0],
-      setAccordionState = _useState[1];
-
-  var handleAccordionClick = function handleAccordionClick(i) {
+  const handleAccordionClick = i => {
     if (accordionActive === i) {
       setAccordionState(-1);
     } else {
@@ -419,57 +291,198 @@ function Accordion(props) {
     className: "accordion js-accordion",
     "data-animation": "on",
     "data-multi-items": "on"
-  }, contents && contents.length && contents.map(function (item, index) {
-    return /*#__PURE__*/React.createElement("li", {
-      className: "accordion__item  js-accordion__item " + (accordionActive === index ? 'accordion__item--is-open' : ''),
-      onClick: function onClick() {
-        return handleAccordionClick(index);
-      },
-      key: index
-    }, /*#__PURE__*/React.createElement("button", {
-      className: "reset accordion__header padding-y-sm padding-x-md js-tab-focus",
-      type: "button"
-    }, /*#__PURE__*/React.createElement(Element, {
-      data: item,
-      type: "header",
-      customClass: "text-md"
-    }), /*#__PURE__*/React.createElement("svg", {
-      className: "icon accordion__icon-arrow no-js:is-hidden",
-      viewBox: "0 0 16 16",
-      "aria-hidden": "true"
-    }, /*#__PURE__*/React.createElement("g", {
-      className: "icon__group",
-      fill: "none",
-      stroke: "currentColor",
-      strokeLinecap: "square",
-      strokeMiterlimit: "10"
-    }, /*#__PURE__*/React.createElement("path", {
-      d: "M2 2l12 12"
-    }), /*#__PURE__*/React.createElement("path", {
-      d: "M14 2L2 14"
-    })))), /*#__PURE__*/React.createElement("div", {
-      className: "accordion__panel js-accordion__panel"
-    }, /*#__PURE__*/React.createElement("div", {
-      className: "text-component padding-top-xxxs padding-x-md padding-bottom-md"
-    }, /*#__PURE__*/React.createElement(Element, {
-      data: item,
-      type: "bodytext"
-    }))));
-  })))));
+  }, contents && contents.length && contents.map((item, index) => /*#__PURE__*/React.createElement("li", {
+    className: `accordion__item  js-accordion__item ${accordionActive === index ? 'accordion__item--is-open' : ''}`,
+    onClick: () => handleAccordionClick(index),
+    key: index
+  }, /*#__PURE__*/React.createElement("button", {
+    className: "reset accordion__header padding-y-sm padding-x-md js-tab-focus",
+    type: "button"
+  }, /*#__PURE__*/React.createElement(Element, {
+    data: item,
+    type: "header",
+    customClass: "text-md"
+  }), /*#__PURE__*/React.createElement("svg", {
+    className: "icon accordion__icon-arrow no-js:is-hidden",
+    viewBox: "0 0 16 16",
+    "aria-hidden": "true"
+  }, /*#__PURE__*/React.createElement("g", {
+    className: "icon__group",
+    fill: "none",
+    stroke: "currentColor",
+    strokeLinecap: "square",
+    strokeMiterlimit: "10"
+  }, /*#__PURE__*/React.createElement("path", {
+    d: "M2 2l12 12"
+  }), /*#__PURE__*/React.createElement("path", {
+    d: "M14 2L2 14"
+  })))), /*#__PURE__*/React.createElement("div", {
+    className: "accordion__panel js-accordion__panel"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "text-component padding-top-xxxs padding-x-md padding-bottom-md"
+  }, /*#__PURE__*/React.createElement(Element, {
+    data: item,
+    type: "bodytext"
+  })))))))));
+}
+
+function ImportScript(url, id) {
+  const existingScript = document.getElementById(id);
+
+  if (existingScript) {
+    existingScript.remove();
+  }
+
+  const script = document.createElement('script');
+  script.src = url;
+  script.id = id;
+  document.body.appendChild(script);
+}
+
+function Header(props) {
+  const Logo = props.logo;
+  const scriptFile = props.scriptFile;
+  const scriptId = props.scriptId;
+  const showNavigation = props.showNavigation ? props.showNavigation : null;
+  const menuItems = props.menuItems ? props.menuItems : null;
+  const accessibilityName = props.accessibilityName ? props.accessibilityName : 'Menu';
+  useEffect(() => {
+    if (showNavigation) {
+      ImportScript(scriptFile, scriptId);
+    }
+  }, [showNavigation, scriptFile, scriptId]);
+
+  const handleHeaderChange = evt => {
+    evt.preventDefault();
+    const elementId = evt.target.hash.replace('#', '');
+    const scrollPoint = document.getElementById(elementId);
+    const yOffset = -125;
+    const y = scrollPoint.getBoundingClientRect().top + window.pageYOffset + yOffset;
+    window.scrollTo({
+      top: y,
+      behavior: 'smooth'
+    });
+  };
+
+  return /*#__PURE__*/React.createElement("header", {
+    className: "header position-fixed opacity-90% js-header "
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "header__container container max-width-lg"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "header__logo"
+  }, /*#__PURE__*/React.createElement(Logo, null)), showNavigation && /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("button", {
+    className: "btn btn--subtle header__trigger js-header__trigger padding-bottom-sm padding-top-sm padding-right-xxs padding-left-sm shadow-none",
+    "aria-label": "Toggle menu",
+    "aria-expanded": "false",
+    "aria-controls": "header-nav"
+  }, /*#__PURE__*/React.createElement("i", {
+    className: "header__trigger-icon",
+    "aria-hidden": "true"
+  }), /*#__PURE__*/React.createElement("span", {
+    className: "sr-only"
+  }, accessibilityName)), /*#__PURE__*/React.createElement("nav", {
+    className: "header__nav js-header__nav",
+    id: "header-nav",
+    role: "navigation",
+    "aria-label": "Main"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "header__nav-inner"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "header__label sr-only"
+  }, accessibilityName), /*#__PURE__*/React.createElement("ul", {
+    className: "header__list"
+  }, menuItems && menuItems.length && menuItems.map((item, index) => /*#__PURE__*/React.createElement("li", {
+    className: "header__item",
+    key: index
+  }, /*#__PURE__*/React.createElement("a", {
+    href: item.href,
+    className: "header__link",
+    onClick: handleHeaderChange
+  }, item.name)))))))));
+}
+
+const ElementHelper = {
+  getFirstImageUrl: (content, pos, width, height) => {
+    if (typeof content !== undefined && content[pos].content.gallery.length && typeof content[pos].content.gallery[0].publicUrl === 'string') {
+      let imageCollection = [];
+
+      for (var image of content[pos].content.gallery) {
+        let imageUrl = image.publicUrl;
+        let search = process.env.REACT_APP_API_BASE_URL;
+        let replace = process.env.REACT_APP_API_BASE_URL + 'resize/image/';
+        imageCollection.push(imageUrl.replace(search, replace) + '/' + width + '/' + height);
+      }
+
+      return imageCollection[0];
+    }
+  },
+  getImages: (content, pos, width, height) => {
+    if (typeof content !== undefined && content[pos].content.gallery.length && typeof content[pos].content.gallery[0].publicUrl === 'string') {
+      let imageCollection = [];
+
+      for (var image of content[pos].content.gallery) {
+        if (image.publicUrl) {
+          let imageUrl = image.publicUrl;
+          let search = process.env.REACT_APP_API_BASE_URL;
+          let replace = process.env.REACT_APP_API_BASE_URL + 'resize/image/';
+          imageCollection.push(imageUrl.replace(search, replace) + '/' + width + '/' + height);
+        }
+      }
+
+      return imageCollection.map((image, index) => /*#__PURE__*/React.createElement("img", {
+        src: image,
+        alt: "",
+        key: index
+      }));
+    }
+  }
+};
+
+function Hero(props) {
+  const [content, setContent] = useState([]);
+  const colPos = props.colPos ? props.colPos : null;
+  if (!colPos) console.log('Error: ColPos not defined!');
+  const contents = props.contents ? props.contents[colPos] : null;
+  const sectionClass = props.sectionClass ? props.sectionClass : null;
+  const sectionId = props.sectionId ? props.sectionId : null;
+  useEffect(() => {
+    setContent(contents);
+  }, [contents]);
+  return content && content.length ? /*#__PURE__*/React.createElement("section", {
+    className: 'hero padding-y-xxl ' + sectionClass,
+    id: sectionId,
+    style: {
+      backgroundImage: "linear-gradient(45deg, rgba(255, 255, 255, 0.5) 0%, rgba(255, 255, 255, 0) 40%), url('" + ElementHelper.getFirstImageUrl(content, 0, 1280, 800) + "')"
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "container max-width-100% min-height-50vh flex flex-wrap items-center"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "text-component margin-bottom-sm width-50% margin-left-xl"
+  }, /*#__PURE__*/React.createElement(Element, {
+    data: content[0],
+    type: "header",
+    customTag: "h1",
+    customId: "hero",
+    customClass: "heroc"
+  }), /*#__PURE__*/React.createElement(Element, {
+    data: content[0],
+    type: "subheader",
+    wrap: "strong"
+  }), /*#__PURE__*/React.createElement(Element, {
+    data: content[0],
+    type: "bodytext"
+  })))) : null;
 }
 
 function FooterMain(props) {
-  var _useState = useState([]),
-      content = _useState[0],
-      setContent = _useState[1];
-
-  var Logo = props.logo;
-  var Link = props.link;
-  var colPos = props.colPos ? props.colPos : null;
+  const [content, setContent] = useState([]);
+  const Logo = props.logo;
+  const Link = props.link;
+  const colPos = props.colPos ? props.colPos : null;
   if (!colPos) console.log('Error: ColPos not defined!');
-  var contents = props.contents ? props.contents[colPos] : null;
-  var sectionClass = props.sectionClass ? props.sectionClass : null;
-  useEffect(function () {
+  const contents = props.contents ? props.contents[colPos] : null;
+  const sectionClass = props.sectionClass ? props.sectionClass : null;
+  useEffect(() => {
     setContent(contents);
   }, [contents]);
   return content && content.length ? /*#__PURE__*/React.createElement("footer", {
@@ -480,29 +493,27 @@ function FooterMain(props) {
     className: "grid gap-lg"
   }, /*#__PURE__*/React.createElement("div", {
     className: "col-12 col-6@sm"
-  }, content.map(function (item, index) {
-    return /*#__PURE__*/React.createElement("div", {
-      key: index
-    }, /*#__PURE__*/React.createElement("div", {
-      className: "text-component"
-    }, /*#__PURE__*/React.createElement(Element, {
-      data: item,
-      type: "header",
-      customTag: "h4"
-    }), /*#__PURE__*/React.createElement(Element, {
-      data: item,
-      type: "subheader",
-      customTag: "p"
-    }), /*#__PURE__*/React.createElement(Element, {
-      data: item,
-      type: "bodytext"
-    }), /*#__PURE__*/React.createElement(Element, {
-      data: item,
-      type: "upload",
-      width: "200",
-      customClass: "col-12"
-    })));
-  })), /*#__PURE__*/React.createElement("div", {
+  }, content.map((item, index) => /*#__PURE__*/React.createElement("div", {
+    key: index
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "text-component"
+  }, /*#__PURE__*/React.createElement(Element, {
+    data: item,
+    type: "header",
+    customTag: "h4"
+  }), /*#__PURE__*/React.createElement(Element, {
+    data: item,
+    type: "subheader",
+    customTag: "p"
+  }), /*#__PURE__*/React.createElement(Element, {
+    data: item,
+    type: "bodytext"
+  }), /*#__PURE__*/React.createElement(Element, {
+    data: item,
+    type: "upload",
+    width: "200",
+    customClass: "col-12"
+  }))))), /*#__PURE__*/React.createElement("div", {
     className: "col-12 col-6@sm display@sm"
   }, /*#__PURE__*/React.createElement(Logo, null))), /*#__PURE__*/React.createElement("div", {
     className: "border-top padding-top-xs margin-top-lg flex justify-end"
@@ -517,5 +528,5 @@ function FooterMain(props) {
   }, "Impressum"))))) : null;
 }
 
-export { Accordion, FooterMain, Header };
+export { Accordion, Element, FooterMain, Header, Hero };
 //# sourceMappingURL=index.modern.js.map

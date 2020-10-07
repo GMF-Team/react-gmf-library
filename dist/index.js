@@ -6,83 +6,6 @@ var parse = _interopDefault(require('html-react-parser'));
 var Moment = _interopDefault(require('moment'));
 require('moment/locale/de');
 
-function ImportScript(url, id) {
-  var existingScript = document.getElementById(id);
-
-  if (existingScript) {
-    existingScript.remove();
-  }
-
-  var script = document.createElement('script');
-  script.src = url;
-  script.id = id;
-  document.body.appendChild(script);
-}
-
-function Header(props) {
-  var Logo = props.logo;
-  var scriptFile = props.scriptFile;
-  var scriptId = props.scriptId;
-  var showNavigation = props.showNavigation ? props.showNavigation : null;
-  var menuItems = props.menuItems ? props.menuItems : null;
-  var accessibilityName = props.accessibilityName ? props.accessibilityName : 'Menu';
-  React.useEffect(function () {
-    if (showNavigation) {
-      ImportScript(scriptFile, scriptId);
-    }
-  }, [showNavigation, scriptFile, scriptId]);
-
-  var handleHeaderChange = function handleHeaderChange(evt) {
-    evt.preventDefault();
-    var elementId = evt.target.hash.replace('#', '');
-    var scrollPoint = document.getElementById(elementId);
-    var yOffset = -125;
-    var y = scrollPoint.getBoundingClientRect().top + window.pageYOffset + yOffset;
-    window.scrollTo({
-      top: y,
-      behavior: 'smooth'
-    });
-  };
-
-  return /*#__PURE__*/React__default.createElement("header", {
-    className: "header position-fixed opacity-90% js-header "
-  }, /*#__PURE__*/React__default.createElement("div", {
-    className: "header__container container max-width-lg"
-  }, /*#__PURE__*/React__default.createElement("div", {
-    className: "header__logo"
-  }, /*#__PURE__*/React__default.createElement(Logo, null)), showNavigation && /*#__PURE__*/React__default.createElement(React__default.Fragment, null, /*#__PURE__*/React__default.createElement("button", {
-    className: "btn btn--subtle header__trigger js-header__trigger padding-bottom-sm padding-top-sm padding-right-xxs padding-left-sm shadow-none",
-    "aria-label": "Toggle menu",
-    "aria-expanded": "false",
-    "aria-controls": "header-nav"
-  }, /*#__PURE__*/React__default.createElement("i", {
-    className: "header__trigger-icon",
-    "aria-hidden": "true"
-  }), /*#__PURE__*/React__default.createElement("span", {
-    className: "sr-only"
-  }, accessibilityName)), /*#__PURE__*/React__default.createElement("nav", {
-    className: "header__nav js-header__nav",
-    id: "header-nav",
-    role: "navigation",
-    "aria-label": "Main"
-  }, /*#__PURE__*/React__default.createElement("div", {
-    className: "header__nav-inner"
-  }, /*#__PURE__*/React__default.createElement("div", {
-    className: "header__label sr-only"
-  }, accessibilityName), /*#__PURE__*/React__default.createElement("ul", {
-    className: "header__list"
-  }, menuItems && menuItems.length && menuItems.map(function (item, index) {
-    return /*#__PURE__*/React__default.createElement("li", {
-      className: "header__item",
-      key: index
-    }, /*#__PURE__*/React__default.createElement("a", {
-      href: item.href,
-      className: "header__link",
-      onClick: handleHeaderChange
-    }, item.name));
-  })))))));
-}
-
 function _unsupportedIterableToArray(o, minLen) {
   if (!o) return;
   if (typeof o === "string") return _arrayLikeToArray(o, minLen);
@@ -461,6 +384,164 @@ function Accordion(props) {
   })))));
 }
 
+function ImportScript(url, id) {
+  var existingScript = document.getElementById(id);
+
+  if (existingScript) {
+    existingScript.remove();
+  }
+
+  var script = document.createElement('script');
+  script.src = url;
+  script.id = id;
+  document.body.appendChild(script);
+}
+
+function Header(props) {
+  var Logo = props.logo;
+  var scriptFile = props.scriptFile;
+  var scriptId = props.scriptId;
+  var showNavigation = props.showNavigation ? props.showNavigation : null;
+  var menuItems = props.menuItems ? props.menuItems : null;
+  var accessibilityName = props.accessibilityName ? props.accessibilityName : 'Menu';
+  React.useEffect(function () {
+    if (showNavigation) {
+      ImportScript(scriptFile, scriptId);
+    }
+  }, [showNavigation, scriptFile, scriptId]);
+
+  var handleHeaderChange = function handleHeaderChange(evt) {
+    evt.preventDefault();
+    var elementId = evt.target.hash.replace('#', '');
+    var scrollPoint = document.getElementById(elementId);
+    var yOffset = -125;
+    var y = scrollPoint.getBoundingClientRect().top + window.pageYOffset + yOffset;
+    window.scrollTo({
+      top: y,
+      behavior: 'smooth'
+    });
+  };
+
+  return /*#__PURE__*/React__default.createElement("header", {
+    className: "header position-fixed opacity-90% js-header "
+  }, /*#__PURE__*/React__default.createElement("div", {
+    className: "header__container container max-width-lg"
+  }, /*#__PURE__*/React__default.createElement("div", {
+    className: "header__logo"
+  }, /*#__PURE__*/React__default.createElement(Logo, null)), showNavigation && /*#__PURE__*/React__default.createElement(React__default.Fragment, null, /*#__PURE__*/React__default.createElement("button", {
+    className: "btn btn--subtle header__trigger js-header__trigger padding-bottom-sm padding-top-sm padding-right-xxs padding-left-sm shadow-none",
+    "aria-label": "Toggle menu",
+    "aria-expanded": "false",
+    "aria-controls": "header-nav"
+  }, /*#__PURE__*/React__default.createElement("i", {
+    className: "header__trigger-icon",
+    "aria-hidden": "true"
+  }), /*#__PURE__*/React__default.createElement("span", {
+    className: "sr-only"
+  }, accessibilityName)), /*#__PURE__*/React__default.createElement("nav", {
+    className: "header__nav js-header__nav",
+    id: "header-nav",
+    role: "navigation",
+    "aria-label": "Main"
+  }, /*#__PURE__*/React__default.createElement("div", {
+    className: "header__nav-inner"
+  }, /*#__PURE__*/React__default.createElement("div", {
+    className: "header__label sr-only"
+  }, accessibilityName), /*#__PURE__*/React__default.createElement("ul", {
+    className: "header__list"
+  }, menuItems && menuItems.length && menuItems.map(function (item, index) {
+    return /*#__PURE__*/React__default.createElement("li", {
+      className: "header__item",
+      key: index
+    }, /*#__PURE__*/React__default.createElement("a", {
+      href: item.href,
+      className: "header__link",
+      onClick: handleHeaderChange
+    }, item.name));
+  })))))));
+}
+
+var ElementHelper = {
+  getFirstImageUrl: function getFirstImageUrl(content, pos, width, height) {
+    if (typeof content !== undefined && content[pos].content.gallery.length && typeof content[pos].content.gallery[0].publicUrl === 'string') {
+      var imageCollection = [];
+
+      for (var _iterator = _createForOfIteratorHelperLoose(content[pos].content.gallery), _step; !(_step = _iterator()).done;) {
+        var image = _step.value;
+        var imageUrl = image.publicUrl;
+        var search = process.env.REACT_APP_API_BASE_URL;
+        var replace = process.env.REACT_APP_API_BASE_URL + 'resize/image/';
+        imageCollection.push(imageUrl.replace(search, replace) + '/' + width + '/' + height);
+      }
+
+      return imageCollection[0];
+    }
+  },
+  getImages: function getImages(content, pos, width, height) {
+    if (typeof content !== undefined && content[pos].content.gallery.length && typeof content[pos].content.gallery[0].publicUrl === 'string') {
+      var imageCollection = [];
+
+      for (var _iterator2 = _createForOfIteratorHelperLoose(content[pos].content.gallery), _step2; !(_step2 = _iterator2()).done;) {
+        var image = _step2.value;
+
+        if (image.publicUrl) {
+          var imageUrl = image.publicUrl;
+          var search = process.env.REACT_APP_API_BASE_URL;
+          var replace = process.env.REACT_APP_API_BASE_URL + 'resize/image/';
+          imageCollection.push(imageUrl.replace(search, replace) + '/' + width + '/' + height);
+        }
+      }
+
+      return imageCollection.map(function (image, index) {
+        return /*#__PURE__*/React__default.createElement("img", {
+          src: image,
+          alt: "",
+          key: index
+        });
+      });
+    }
+  }
+};
+
+function Hero(props) {
+  var _useState = React.useState([]),
+      content = _useState[0],
+      setContent = _useState[1];
+
+  var colPos = props.colPos ? props.colPos : null;
+  if (!colPos) console.log('Error: ColPos not defined!');
+  var contents = props.contents ? props.contents[colPos] : null;
+  var sectionClass = props.sectionClass ? props.sectionClass : null;
+  var sectionId = props.sectionId ? props.sectionId : null;
+  React.useEffect(function () {
+    setContent(contents);
+  }, [contents]);
+  return content && content.length ? /*#__PURE__*/React__default.createElement("section", {
+    className: 'hero padding-y-xxl ' + sectionClass,
+    id: sectionId,
+    style: {
+      backgroundImage: "linear-gradient(45deg, rgba(255, 255, 255, 0.5) 0%, rgba(255, 255, 255, 0) 40%), url('" + ElementHelper.getFirstImageUrl(content, 0, 1280, 800) + "')"
+    }
+  }, /*#__PURE__*/React__default.createElement("div", {
+    className: "container max-width-100% min-height-50vh flex flex-wrap items-center"
+  }, /*#__PURE__*/React__default.createElement("div", {
+    className: "text-component margin-bottom-sm width-50% margin-left-xl"
+  }, /*#__PURE__*/React__default.createElement(Element, {
+    data: content[0],
+    type: "header",
+    customTag: "h1",
+    customId: "hero",
+    customClass: "heroc"
+  }), /*#__PURE__*/React__default.createElement(Element, {
+    data: content[0],
+    type: "subheader",
+    wrap: "strong"
+  }), /*#__PURE__*/React__default.createElement(Element, {
+    data: content[0],
+    type: "bodytext"
+  })))) : null;
+}
+
 function FooterMain(props) {
   var _useState = React.useState([]),
       content = _useState[0],
@@ -521,6 +602,8 @@ function FooterMain(props) {
 }
 
 exports.Accordion = Accordion;
+exports.Element = Element;
 exports.FooterMain = FooterMain;
 exports.Header = Header;
+exports.Hero = Hero;
 //# sourceMappingURL=index.js.map

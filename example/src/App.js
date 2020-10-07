@@ -3,8 +3,9 @@ import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 
 import Logo from './Logo';
 
-import { Header } from 'react-gmf-library';
 import { Accordion } from 'react-gmf-library';
+import { Hero } from 'react-gmf-library';
+import { Header } from 'react-gmf-library';
 import { FooterMain } from 'react-gmf-library';
 
 const App = () => {
@@ -32,6 +33,50 @@ const TestPage = () => {
 						href: '#featurev2',
 					},
 				]}
+			/>
+
+			<Hero
+				contents={{
+					colPos100: [
+						{
+							id: 111,
+							pid: 36,
+							type: 'minimal',
+							colPos: 100,
+							content: {
+								header: 'Hero',
+								subheader: '',
+								headerLink: '',
+								date: '0',
+								bodytext: '<p>Text</p>',
+								gallery: [
+									{
+										publicUrl:
+											'https://cms.gmf.design/fileadmin/_processed_/2/1/csm_test_1b3cf1f7c2.jpg',
+										properties: {
+											title: null,
+											alternative: null,
+											description: null,
+											mimeType: 'image/jpeg',
+											type: 'image',
+											filename: 'csm_test_1b3cf1f7c2.jpg',
+											originalUrl: 'fileadmin/redakteur/bilder/test.jpg',
+											uidLocal: 8,
+											fileReferenceUid: 101,
+											size: '199 KB',
+											link: null,
+											autoplay: null,
+											extension: 'jpg',
+										},
+									},
+								],
+							},
+						},
+					],
+				}}
+				colPos='colPos100'
+				sectionId='hero'
+				sectionClass='section_hero'
 			/>
 
 			<Accordion

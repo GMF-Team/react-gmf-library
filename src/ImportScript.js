@@ -1,4 +1,4 @@
-function ImportScript (url, id) {
+function ImportScript(url, id) {
 	const existingScript = document.getElementById(id);
 
 	if (existingScript) {
@@ -9,6 +9,6 @@ function ImportScript (url, id) {
 	script.src = url;
 	script.id = id;
 	document.body.appendChild(script);
-};
+}
 
-export {ImportScript};
+export { ImportScript };
