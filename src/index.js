@@ -5,9 +5,12 @@ export { Element } from './Element';
 export { FeatureV2 } from './FeatureV2';
 export { FeatureV11 } from './FeatureV11';
 export { FeatureV11BottomCenter } from './FeatureV11BottomCenter';
+export { FooterMain } from './FooterMain';
+export { FullWidthBlockquote } from './FullWidthBlockquote';
 export { Header } from './Header';
 export { Hero } from './Hero';
-export { FooterMain } from './FooterMain';
+export { Overscroll } from './Overscroll';
+export { VerticalTimeline } from './VerticalTimeline';
 
 export { ElementHelper } from './ElementHelper';
 export { ImportScript } from './ImportScript';

@@ -754,6 +754,108 @@ function FeatureV11BottomCenter(props) {
   })))));
 }
 
+function FooterMain(props) {
+  var _useState = React.useState([]),
+      content = _useState[0],
+      setContent = _useState[1];
+
+  var Logo = props.logo;
+  var Link = props.link;
+  var colPos = props.colPos ? props.colPos : null;
+  if (!colPos) console.log('Error: ColPos not defined!');
+  var contents = props.contents ? props.contents[colPos] : null;
+  var sectionClass = props.sectionClass ? props.sectionClass : null;
+  var sectionId = props.sectionId ? props.sectionId : null;
+  React.useEffect(function () {
+    setContent(contents);
+  }, [contents]);
+  return content && content.length ? /*#__PURE__*/React__default.createElement("footer", {
+    className: 'main-footer padding-y-lg ' + sectionClass,
+    id: sectionId
+  }, /*#__PURE__*/React__default.createElement("div", {
+    className: "container max-width-adaptive-lg"
+  }, /*#__PURE__*/React__default.createElement("div", {
+    className: "grid gap-lg"
+  }, /*#__PURE__*/React__default.createElement("div", {
+    className: "col-12 col-6@sm"
+  }, content.map(function (item, index) {
+    return /*#__PURE__*/React__default.createElement("div", {
+      key: index
+    }, /*#__PURE__*/React__default.createElement("div", {
+      className: "text-component"
+    }, /*#__PURE__*/React__default.createElement(Element, {
+      data: item,
+      type: "header",
+      customTag: "h4"
+    }), /*#__PURE__*/React__default.createElement(Element, {
+      data: item,
+      type: "subheader",
+      customTag: "p"
+    }), /*#__PURE__*/React__default.createElement(Element, {
+      data: item,
+      type: "bodytext"
+    }), /*#__PURE__*/React__default.createElement(Element, {
+      data: item,
+      type: "upload",
+      width: "200",
+      customClass: "col-12"
+    })));
+  })), /*#__PURE__*/React__default.createElement("div", {
+    className: "col-12 col-6@sm display@sm"
+  }, /*#__PURE__*/React__default.createElement(Link, {
+    to: "/"
+  }, /*#__PURE__*/React__default.createElement(Logo, null)))), /*#__PURE__*/React__default.createElement("div", {
+    className: "border-top padding-top-xs margin-top-lg flex justify-end"
+  }, /*#__PURE__*/React__default.createElement("div", {
+    className: "text-sm"
+  }, /*#__PURE__*/React__default.createElement(Link, {
+    to: "/privacy",
+    className: "color-contrast-high margin-left-xs"
+  }, "Datenschutz"), /*#__PURE__*/React__default.createElement(Link, {
+    to: "/imprint",
+    className: "color-contrast-high margin-left-xs"
+  }, "Impressum"))))) : null;
+}
+
+function FullWidthBlockquote(props) {
+  var colPos = props.colPos ? props.colPos : null;
+  if (!colPos) console.log('Error: ColPos not defined!');
+  var contents = props.contents ? props.contents[colPos] : null;
+  var sectionClass = props.sectionClass ? props.sectionClass : null;
+  var sectionId = props.sectionId ? props.sectionId : null;
+  return /*#__PURE__*/React__default.createElement(React__default.Fragment, null, contents && contents.length && contents.map(function (item, index) {
+    return /*#__PURE__*/React__default.createElement("section", {
+      key: index,
+      className: 'fullwidthblockquote ' + sectionClass,
+      id: sectionId
+    }, /*#__PURE__*/React__default.createElement("blockquote", {
+      className: "position-relative z-index-1 bg-contrast-lower text-center padding-y-xxl"
+    }, /*#__PURE__*/React__default.createElement("div", {
+      className: "container max-width-adaptive-sm"
+    }, /*#__PURE__*/React__default.createElement("svg", {
+      className: "icon icon--xxl color-contrast-low",
+      "aria-hidden": "true",
+      viewBox: "0 0 64 64"
+    }, /*#__PURE__*/React__default.createElement("polygon", {
+      fill: "currentColor",
+      points: "2 36 17 2 26 2 15 36 26 36 26 62 2 62 2 36"
+    }), /*#__PURE__*/React__default.createElement("polygon", {
+      fill: "currentColor",
+      points: "38 36 53 2 62 2 51 36 62 36 62 62 38 62 38 36"
+    })), /*#__PURE__*/React__default.createElement("div", {
+      className: "text-component margin-top-lg"
+    }, /*#__PURE__*/React__default.createElement(Element, {
+      data: item,
+      type: "header",
+      customTag: "h1"
+    }), /*#__PURE__*/React__default.createElement(Element, {
+      data: item,
+      type: "bodytext",
+      customClass: "text-xl"
+    })))));
+  }));
+}
+
 function ImportScript(url, id) {
   var existingScript = document.getElementById(id);
 
@@ -873,34 +975,103 @@ function Hero(props) {
   })))) : null;
 }
 
-function FooterMain(props) {
+function Overscroll(props) {
   var _useState = React.useState([]),
       content = _useState[0],
       setContent = _useState[1];
 
-  var Logo = props.logo;
-  var Link = props.link;
+  var scriptFile = props.scriptFile;
+  var scriptId = props.scriptId;
   var colPos = props.colPos ? props.colPos : null;
   if (!colPos) console.log('Error: ColPos not defined!');
   var contents = props.contents ? props.contents[colPos] : null;
   var sectionClass = props.sectionClass ? props.sectionClass : null;
   var sectionId = props.sectionId ? props.sectionId : null;
   React.useEffect(function () {
-    setContent(contents);
+    if (contents && contents.length) {
+      ImportScript(scriptFile, scriptId);
+      setContent(contents);
+    }
   }, [contents]);
-  return content && content.length ? /*#__PURE__*/React__default.createElement("footer", {
-    className: 'main-footer padding-y-lg ' + sectionClass,
+  return content && content.length ? /*#__PURE__*/React__default.createElement("div", {
+    className: "overscroll-section js-overscroll-section"
+  }, /*#__PURE__*/React__default.createElement("section", {
+    className: 'overscroll-section__sticky-content js-overscroll-section__sticky-content ' + sectionClass,
+    id: sectionId,
+    style: {
+      backgroundImage: "linear-gradient(90deg, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0) 40%), url('" + ElementHelper.getFirstImageUrl(content, 0, 1280, 800) + "')"
+    }
+  }, /*#__PURE__*/React__default.createElement("div", {
+    className: "container max-width-100% min-height-100vh flex flex-wrap items-center"
+  }, /*#__PURE__*/React__default.createElement("div", {
+    className: "text-component text-left width-50% margin-left-xl display@sm"
+  }, /*#__PURE__*/React__default.createElement(Element, {
+    data: content[0],
+    type: "header",
+    customTag: "h2"
+  }), /*#__PURE__*/React__default.createElement(Element, {
+    data: content[0],
+    type: "subheader",
+    customTag: "h3"
+  })))), /*#__PURE__*/React__default.createElement("section", {
+    className: "overscroll-section__scroll-content bg js-overscroll-section__scroll-content"
+  }, /*#__PURE__*/React__default.createElement("div", {
+    className: "container max-width-md padding-y-xl"
+  }, /*#__PURE__*/React__default.createElement("div", {
+    className: "text-component hide@sm margin-bottom-md"
+  }, /*#__PURE__*/React__default.createElement(Element, {
+    data: content[0],
+    type: "header",
+    customTag: "h2"
+  }), /*#__PURE__*/React__default.createElement(Element, {
+    data: content[0],
+    type: "subheader",
+    customTag: "h3"
+  })), /*#__PURE__*/React__default.createElement("div", {
+    className: "text-component line-height-lg v-space-md"
+  }, /*#__PURE__*/React__default.createElement(Element, {
+    data: content[0],
+    type: "bodytext"
+  }))))) : null;
+}
+
+function VerticalTimeline(props) {
+  var scriptFile = props.scriptFile;
+  var scriptId = props.scriptId;
+  var colPos = props.colPos ? props.colPos : null;
+  if (!colPos) console.log('Error: ColPos not defined!');
+  var contents = props.contents ? props.contents[colPos] : null;
+  var sectionClass = props.sectionClass ? props.sectionClass : null;
+  var sectionId = props.sectionId ? props.sectionId : null;
+  React.useEffect(function () {
+    ImportScript(scriptFile, scriptId);
+  }, []);
+  return /*#__PURE__*/React__default.createElement(React__default.Fragment, null, /*#__PURE__*/React__default.createElement("section", {
+    className: 'position-relative z-index-1 overflow-hidden padding-y-xl ' + sectionClass,
     id: sectionId
   }, /*#__PURE__*/React__default.createElement("div", {
     className: "container max-width-adaptive-lg"
   }, /*#__PURE__*/React__default.createElement("div", {
-    className: "grid gap-lg"
-  }, /*#__PURE__*/React__default.createElement("div", {
-    className: "col-12 col-6@sm"
-  }, content.map(function (item, index) {
+    className: "v-timeline js-v-timeline"
+  }, contents && contents.length && contents.map(function (item, index) {
     return /*#__PURE__*/React__default.createElement("div", {
+      className: "v-timeline__section js-v-timeline__section",
       key: index
     }, /*#__PURE__*/React__default.createElement("div", {
+      className: "v-timeline__marker bg-contrast-high border border-3 border-contrast-lower",
+      "aria-hidden": "true"
+    }), /*#__PURE__*/React__default.createElement("div", {
+      className: "v-timeline__items-group"
+    }, /*#__PURE__*/React__default.createElement("div", {
+      className: "v-timeline__item bg-contrast-lower padding-md radius-md shadow-xs"
+    }, /*#__PURE__*/React__default.createElement("div", {
+      className: "v-timeline__date margin-bottom-sm"
+    }, /*#__PURE__*/React__default.createElement(Element, {
+      data: item,
+      type: "date",
+      customTag: "time",
+      customClass: "v-timeline__date-value"
+    })), /*#__PURE__*/React__default.createElement("div", {
       className: "text-component"
     }, /*#__PURE__*/React__default.createElement(Element, {
       data: item,
@@ -908,32 +1079,9 @@ function FooterMain(props) {
       customTag: "h4"
     }), /*#__PURE__*/React__default.createElement(Element, {
       data: item,
-      type: "subheader",
-      customTag: "p"
-    }), /*#__PURE__*/React__default.createElement(Element, {
-      data: item,
       type: "bodytext"
-    }), /*#__PURE__*/React__default.createElement(Element, {
-      data: item,
-      type: "upload",
-      width: "200",
-      customClass: "col-12"
-    })));
-  })), /*#__PURE__*/React__default.createElement("div", {
-    className: "col-12 col-6@sm display@sm"
-  }, /*#__PURE__*/React__default.createElement(Link, {
-    to: "/"
-  }, /*#__PURE__*/React__default.createElement(Logo, null)))), /*#__PURE__*/React__default.createElement("div", {
-    className: "border-top padding-top-xs margin-top-lg flex justify-end"
-  }, /*#__PURE__*/React__default.createElement("div", {
-    className: "text-sm"
-  }, /*#__PURE__*/React__default.createElement(Link, {
-    to: "/privacy",
-    className: "color-contrast-high margin-left-xs"
-  }, "Datenschutz"), /*#__PURE__*/React__default.createElement(Link, {
-    to: "/imprint",
-    className: "color-contrast-high margin-left-xs"
-  }, "Impressum"))))) : null;
+    })))));
+  })))));
 }
 
 exports.Accordion = Accordion;
@@ -945,7 +1093,10 @@ exports.FeatureV11 = FeatureV11;
 exports.FeatureV11BottomCenter = FeatureV11BottomCenter;
 exports.FeatureV2 = FeatureV2;
 exports.FooterMain = FooterMain;
+exports.FullWidthBlockquote = FullWidthBlockquote;
 exports.Header = Header;
 exports.Hero = Hero;
 exports.ImportScript = ImportScript;
+exports.Overscroll = Overscroll;
+exports.VerticalTimeline = VerticalTimeline;
 //# sourceMappingURL=index.js.map

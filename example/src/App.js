@@ -10,9 +10,12 @@ import {
 	FeatureV2,
 	FeatureV11,
 	FeatureV11BottomCenter,
+	FooterMain,
+	FullWidthBlockquote,
 	Hero,
 	Header,
-	FooterMain,
+	VerticalTimeline,
+	Overscroll,
 } from 'react-gmf-library';
 
 const App = () => {
@@ -216,6 +219,88 @@ const Home = () => {
 				sectionClass='section_featurev11bottomcenter'
 				colWidth='col-12 col-6@md'
 				moreButton='Mehr erfahren'
+			/>
+
+			<FullWidthBlockquote
+				contents={{
+					colPos450: [
+						{
+							type: 'minimal',
+							colPos: 450,
+							content: {
+								header: 'FullWidthBlockquote header',
+								subheader: 'FullWidthBlockquote subheader',
+								headerLink: '',
+								date: '0',
+								bodytext: '<p>FullWidthBlockquote text</p>',
+								gallery: [],
+							},
+						},
+					],
+				}}
+				colPos='colPos450'
+				sectionId='fullwidthblockquote'
+				sectionClass='section_fullwidthblockquote'
+			/>
+
+			<Overscroll
+				contents={{
+					colPos200: [
+						{
+							type: 'minimal',
+							colPos: 250,
+							content: {
+								header: 'Overscroll header',
+								subheader: 'Overscroll subheader',
+								headerLink: '',
+								date: '0',
+								bodytext: '<p>Overscroll text</p>',
+								gallery: dummyImage,
+							},
+						},
+					],
+				}}
+				colPos='colPos200'
+				sectionId='overscroll'
+				sectionClass='section_overscroll'
+				scriptFile='scripts/_1_overscroll-section.js'
+				scriptId='overscroll'
+			/>
+
+			<VerticalTimeline
+				contents={{
+					colPos300: [
+						{
+							type: 'minimal',
+							colPos: 300,
+							content: {
+								header: 'VerticalTimeline header 1',
+								subheader: 'VerticalTimeline subheader 1',
+								headerLink: '',
+								date: '1601848700',
+								bodytext: '<p>VerticalTimeline text 1</p>',
+								gallery: [],
+							},
+						},
+						{
+							type: 'minimal',
+							colPos: 300,
+							content: {
+								header: 'VerticalTimeline header 2',
+								subheader: 'VerticalTimeline subheader 2',
+								headerLink: '',
+								date: '1601848800',
+								bodytext: '<p>VerticalTimeline text 2</p>',
+								gallery: [],
+							},
+						},
+					],
+				}}
+				colPos='colPos300'
+				sectionId='verticaltimeline'
+				sectionClass='section_verticaltimeline'
+				scriptFile='scripts/_1_vertical-timeline.js'
+				scriptId='timeline'
 			/>
 
 			<ContactV3
