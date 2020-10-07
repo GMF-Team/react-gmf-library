@@ -17,7 +17,7 @@ function FeatureV11(props) {
 					<section
 						key={index}
 						className={
-							'section-featurev11 position-relative z-index-1 ' +
+							'feature-v11 position-relative z-index-1 ' +
 							sectionClass
 						}
 						id={sectionId}>

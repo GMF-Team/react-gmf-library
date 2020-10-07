@@ -23,7 +23,7 @@ function Overscroll(props) {
 	}, [contents]);
 
 	return content && content.length ? (
-		<div className='section-overscroll js-overscroll-section'>
+		<div className='overscroll-section js-overscroll-section'>
 			<section
 				className={
 					'overscroll-section__sticky-content js-overscroll-section__sticky-content ' +

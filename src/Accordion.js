@@ -21,7 +21,7 @@ function Accordion(props) {
 
 	return (
 		<>
-			<section className={'section-accordion ' + sectionClass} id={sectionId}>
+			<section className={'accordion-section ' + sectionClass} id={sectionId}>
 				<div className='container max-width-adaptive-lg'>
 					<ul
 						className='accordion js-accordion'

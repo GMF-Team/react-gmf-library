@@ -12,7 +12,7 @@ import {
 	FeatureV2,
 	FeatureV11,
 	FeatureV11BottomCenter,
-	FooterMain,
+	MainFooter,
 	FullWidthBlockquote,
 	Hero,
 	Header,
@@ -132,7 +132,7 @@ const Home = () => {
 				reactAppApiContactToken={process.env.REACT_APP_API_CONTACT_TOKEN}
 			/>
 
-			<FooterMain
+			<MainFooter
 				contents={Data.FooterMain}
 				colPos='colPos600'
 				sectionId='footermain'

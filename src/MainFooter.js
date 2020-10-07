@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Element } from './Element';
 
-function FooterMain(props) {
+function MainFooter(props) {
 	const [content, setContent] = useState([]);
 	const Logo = props.logo;
 	const Link = props.link;
@@ -18,7 +18,7 @@ function FooterMain(props) {
 
 	return content && content.length ? (
 		<footer
-			className={'section-mainfooter padding-y-lg ' + sectionClass}
+			className={'main-footer padding-y-lg ' + sectionClass}
 			id={sectionId}>
 			<div className='container max-width-adaptive-lg'>
 				<div className='grid gap-lg'>
@@ -62,4 +62,4 @@ function FooterMain(props) {
 	) : null;
 }
 
-export { FooterMain };
+export { MainFooter };

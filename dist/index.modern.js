@@ -284,7 +284,7 @@ function Accordion(props) {
   };
 
   return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("section", {
-    className: 'section-accordion ' + sectionClass,
+    className: 'accordion-section ' + sectionClass,
     id: sectionId
   }, /*#__PURE__*/React.createElement("div", {
     className: "container max-width-adaptive-lg"
@@ -373,7 +373,7 @@ function CardV9(props) {
   const moreButton = props.moreButton ? props.moreButton : 'More';
   const colWidth = props.colWidth ? props.colWidth : 'col-12';
   return /*#__PURE__*/React.createElement("section", {
-    className: 'section-cardv9 padding-y-xl ' + sectionClass,
+    className: 'card-v9 padding-y-xl ' + sectionClass,
     id: sectionId
   }, /*#__PURE__*/React.createElement("div", {
     className: "container max-width-adaptive-lg"
@@ -459,7 +459,7 @@ function ContactV3(props) {
   };
 
   return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("section", {
-    className: 'section-contactv3 padding-y-xl ' + sectionClass,
+    className: 'contact-v3 padding-y-xl ' + sectionClass,
     id: sectionId
   }, /*#__PURE__*/React.createElement("div", {
     className: "container max-width-adaptive-lg"
@@ -542,7 +542,7 @@ function FeatureV2(props) {
   const sectionId = props.sectionId ? props.sectionId : null;
   return /*#__PURE__*/React.createElement(React.Fragment, null, contents && contents.length && contents.map((item, index) => /*#__PURE__*/React.createElement("section", {
     key: index,
-    className: 'section-featurev2 padding-y-xl ' + sectionClass,
+    className: 'feature-v2 padding-y-xl ' + sectionClass,
     id: sectionId
   }, /*#__PURE__*/React.createElement("div", {
     className: "container max-width-adaptive-lg"
@@ -586,7 +586,7 @@ function FeatureV11(props) {
   const sectionId = props.sectionId ? props.sectionId : null;
   return /*#__PURE__*/React.createElement(React.Fragment, null, contents && contents.length && contents.map((item, index) => /*#__PURE__*/React.createElement("section", {
     key: index,
-    className: 'section-featurev11 position-relative z-index-1 ' + sectionClass,
+    className: 'feature-v11 position-relative z-index-1 ' + sectionClass,
     id: sectionId
   }, /*#__PURE__*/React.createElement("div", {
     className: "container max-width-adaptive-lg position-relative"
@@ -622,7 +622,7 @@ function FeatureV11BottomCenter(props) {
   const moreButton = props.moreButton ? props.moreButton : 'More';
   const colWidth = props.colWidth ? props.colWidth : 'col-12';
   return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("section", {
-    className: 'section-featurev11bottomcenter padding-y-xl position-relative z-index-1 ' + sectionClass,
+    className: 'feature-v11-bottom-center padding-y-xl position-relative z-index-1 ' + sectionClass,
     id: sectionId
   }, /*#__PURE__*/React.createElement("div", {
     className: "container max-width-adaptive-lg position-relative"
@@ -660,7 +660,7 @@ function FeatureV11BottomCenter(props) {
   })))))))));
 }
 
-function FooterMain(props) {
+function MainFooter(props) {
   const [content, setContent] = useState([]);
   const Logo = props.logo;
   const Link = props.link;
@@ -673,7 +673,7 @@ function FooterMain(props) {
     setContent(contents);
   }, [contents]);
   return content && content.length ? /*#__PURE__*/React.createElement("footer", {
-    className: 'section-mainfooter padding-y-lg ' + sectionClass,
+    className: 'main-footer padding-y-lg ' + sectionClass,
     id: sectionId
   }, /*#__PURE__*/React.createElement("div", {
     className: "container max-width-adaptive-lg"
@@ -726,7 +726,7 @@ function FullWidthBlockquote(props) {
   const sectionId = props.sectionId ? props.sectionId : null;
   return /*#__PURE__*/React.createElement(React.Fragment, null, contents && contents.length && contents.map((item, index) => /*#__PURE__*/React.createElement("section", {
     key: index,
-    className: 'section-fullwidthblockquote ' + sectionClass,
+    className: 'full-width-blockquote ' + sectionClass,
     id: sectionId
   }, /*#__PURE__*/React.createElement("blockquote", {
     className: "position-relative z-index-1 bg-contrast-lower text-center padding-y-xxl"
@@ -844,7 +844,7 @@ function Hero(props) {
     setContent(contents);
   }, [contents]);
   return content && content.length ? /*#__PURE__*/React.createElement("section", {
-    className: 'section-hero padding-y-xxl ' + sectionClass,
+    className: 'hero padding-y-xxl ' + sectionClass,
     id: sectionId,
     style: {
       backgroundImage: "linear-gradient(45deg, rgba(255, 255, 255, 0.5) 0%, rgba(255, 255, 255, 0) 40%), url('" + ElementHelper.getFirstImageUrl(content, 0, 1280, 800) + "')"
@@ -885,7 +885,7 @@ function Overscroll(props) {
     }
   }, [contents]);
   return content && content.length ? /*#__PURE__*/React.createElement("div", {
-    className: "section-overscroll js-overscroll-section"
+    className: "overscroll-section js-overscroll-section"
   }, /*#__PURE__*/React.createElement("section", {
     className: 'overscroll-section__sticky-content js-overscroll-section__sticky-content ' + sectionClass,
     id: sectionId,
@@ -938,7 +938,7 @@ function VerticalTimeline(props) {
     ImportScript(scriptFile, scriptId);
   }, []);
   return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("section", {
-    className: 'section-verticaltimeline position-relative z-index-1 overflow-hidden padding-y-xl ' + sectionClass,
+    className: 'vertical-timeline position-relative z-index-1 overflow-hidden padding-y-xl ' + sectionClass,
     id: sectionId
   }, /*#__PURE__*/React.createElement("div", {
     className: "container max-width-adaptive-lg"
@@ -973,5 +973,5 @@ function VerticalTimeline(props) {
   }))))))))));
 }
 
-export { Accordion, CardV9, ContactV3, Element, ElementHelper, FeatureV11, FeatureV11BottomCenter, FeatureV2, FooterMain, FullWidthBlockquote, Header, Hero, ImportScript, Overscroll, VerticalTimeline };
+export { Accordion, CardV9, ContactV3, Element, ElementHelper, FeatureV11, FeatureV11BottomCenter, FeatureV2, FullWidthBlockquote, Header, Hero, ImportScript, MainFooter, Overscroll, VerticalTimeline };
 //# sourceMappingURL=index.modern.js.map

@@ -5,7 +5,7 @@ export { Element } from './Element';
 export { FeatureV2 } from './FeatureV2';
 export { FeatureV11 } from './FeatureV11';
 export { FeatureV11BottomCenter } from './FeatureV11BottomCenter';
-export { FooterMain } from './FooterMain';
+export { MainFooter } from './MainFooter';
 export { FullWidthBlockquote } from './FullWidthBlockquote';
 export { Header } from './Header';
 export { Hero } from './Hero';
