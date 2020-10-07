@@ -338,7 +338,7 @@ function Accordion(props) {
   };
 
   return /*#__PURE__*/React__default.createElement(React__default.Fragment, null, /*#__PURE__*/React__default.createElement("section", {
-    className: 'accordion-section ' + sectionClass,
+    className: 'accordion-section padding-y-xl ' + (sectionClass ? sectionClass : ''),
     id: sectionId
   }, /*#__PURE__*/React__default.createElement("div", {
     className: "container max-width-adaptive-lg"
@@ -436,7 +436,7 @@ function CardV9(props) {
   var moreButton = props.moreButton ? props.moreButton : 'More';
   var colWidth = props.colWidth ? props.colWidth : 'col-12';
   return /*#__PURE__*/React__default.createElement("section", {
-    className: 'card-v9 padding-y-xl ' + sectionClass,
+    className: 'card-v9-section padding-y-xl ' + (sectionClass ? sectionClass : ''),
     id: sectionId
   }, /*#__PURE__*/React__default.createElement("div", {
     className: "container max-width-adaptive-lg"
@@ -539,7 +539,7 @@ function ContactV3(props) {
   };
 
   return /*#__PURE__*/React__default.createElement(React__default.Fragment, null, /*#__PURE__*/React__default.createElement("section", {
-    className: 'contact-v3 padding-y-xl ' + sectionClass,
+    className: 'contact-v3 padding-y-xl ' + (sectionClass ? sectionClass : ''),
     id: sectionId
   }, /*#__PURE__*/React__default.createElement("div", {
     className: "container max-width-adaptive-lg"
@@ -631,7 +631,7 @@ function FeatureV2(props) {
   return /*#__PURE__*/React__default.createElement(React__default.Fragment, null, contents && contents.length && contents.map(function (item, index) {
     return /*#__PURE__*/React__default.createElement("section", {
       key: index,
-      className: 'feature-v2 padding-y-xl ' + sectionClass,
+      className: 'feature-v2 padding-y-xl ' + (sectionClass ? sectionClass : ''),
       id: sectionId
     }, /*#__PURE__*/React__default.createElement("div", {
       className: "container max-width-adaptive-lg"
@@ -677,7 +677,7 @@ function FeatureV11(props) {
   return /*#__PURE__*/React__default.createElement(React__default.Fragment, null, contents && contents.length && contents.map(function (item, index) {
     return /*#__PURE__*/React__default.createElement("section", {
       key: index,
-      className: 'feature-v11 position-relative z-index-1 ' + sectionClass,
+      className: 'feature-v11 position-relative z-index-1 ' + (sectionClass ? sectionClass : ''),
       id: sectionId
     }, /*#__PURE__*/React__default.createElement("div", {
       className: "container max-width-adaptive-lg position-relative"
@@ -714,7 +714,7 @@ function FeatureV11BottomCenter(props) {
   var moreButton = props.moreButton ? props.moreButton : 'More';
   var colWidth = props.colWidth ? props.colWidth : 'col-12';
   return /*#__PURE__*/React__default.createElement(React__default.Fragment, null, /*#__PURE__*/React__default.createElement("section", {
-    className: 'feature-v11-bottom-center padding-y-xl position-relative z-index-1 ' + sectionClass,
+    className: 'feature-v11-bottom-center padding-y-xl position-relative z-index-1 ' + (sectionClass ? sectionClass : ''),
     id: sectionId
   }, /*#__PURE__*/React__default.createElement("div", {
     className: "container max-width-adaptive-lg position-relative"
@@ -770,7 +770,7 @@ function MainFooter(props) {
     setContent(contents);
   }, [contents]);
   return content && content.length ? /*#__PURE__*/React__default.createElement("footer", {
-    className: 'main-footer padding-y-lg ' + sectionClass,
+    className: 'main-footer padding-y-lg ' + (sectionClass ? sectionClass : ''),
     id: sectionId
   }, /*#__PURE__*/React__default.createElement("div", {
     className: "container max-width-adaptive-lg"
@@ -826,7 +826,7 @@ function FullWidthBlockquote(props) {
   return /*#__PURE__*/React__default.createElement(React__default.Fragment, null, contents && contents.length && contents.map(function (item, index) {
     return /*#__PURE__*/React__default.createElement("section", {
       key: index,
-      className: 'full-width-blockquote ' + sectionClass,
+      className: 'full-width-blockquote ' + (sectionClass ? sectionClass : ''),
       id: sectionId
     }, /*#__PURE__*/React__default.createElement("blockquote", {
       className: "position-relative z-index-1 bg-contrast-lower text-center padding-y-xxl"
@@ -950,7 +950,7 @@ function Hero(props) {
     setContent(contents);
   }, [contents]);
   return content && content.length ? /*#__PURE__*/React__default.createElement("section", {
-    className: 'hero padding-y-xxl ' + sectionClass,
+    className: 'hero padding-y-xxl ' + (sectionClass ? sectionClass : ''),
     id: sectionId,
     style: {
       backgroundImage: "linear-gradient(45deg, rgba(255, 255, 255, 0.5) 0%, rgba(255, 255, 255, 0) 40%), url('" + ElementHelper.getFirstImageUrl(content, 0, 1280, 800) + "')"
@@ -996,7 +996,7 @@ function Overscroll(props) {
   return content && content.length ? /*#__PURE__*/React__default.createElement("div", {
     className: "overscroll-section js-overscroll-section"
   }, /*#__PURE__*/React__default.createElement("section", {
-    className: 'overscroll-section__sticky-content js-overscroll-section__sticky-content ' + sectionClass,
+    className: 'overscroll-section__sticky-content js-overscroll-section__sticky-content ' + (sectionClass ? sectionClass : ''),
     id: sectionId,
     style: {
       backgroundImage: "linear-gradient(90deg, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0) 40%), url('" + ElementHelper.getFirstImageUrl(content, 0, 1280, 800) + "')"
@@ -1047,7 +1047,7 @@ function VerticalTimeline(props) {
     ImportScript(scriptFile, scriptId);
   }, []);
   return /*#__PURE__*/React__default.createElement(React__default.Fragment, null, /*#__PURE__*/React__default.createElement("section", {
-    className: 'vertical-timeline position-relative z-index-1 overflow-hidden padding-y-xl ' + sectionClass,
+    className: 'vertical-timeline position-relative z-index-1 overflow-hidden padding-y-xl ' + (sectionClass ? sectionClass : ''),
     id: sectionId
   }, /*#__PURE__*/React__default.createElement("div", {
     className: "container max-width-adaptive-lg"

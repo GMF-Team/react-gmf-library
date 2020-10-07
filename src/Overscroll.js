@@ -27,7 +27,7 @@ function Overscroll(props) {
 			<section
 				className={
 					'overscroll-section__sticky-content js-overscroll-section__sticky-content ' +
-					sectionClass
+					(sectionClass ? sectionClass : '')
 				}
 				id={sectionId}
 				style={{

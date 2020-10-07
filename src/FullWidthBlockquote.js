@@ -16,7 +16,7 @@ function FullWidthBlockquote(props) {
 				contents.map((item, index) => (
 					<section
 						key={index}
-						className={'full-width-blockquote ' + sectionClass}
+						className={'full-width-blockquote ' + (sectionClass ? sectionClass : '')}
 						id={sectionId}>
 						<blockquote className='position-relative z-index-1 bg-contrast-lower text-center padding-y-xxl'>
 							<div className='container max-width-adaptive-sm'>

@@ -220,17 +220,17 @@ const Data = {
 		],
 	},
 
-	FooterMain: {
+	MainFooter: {
 		colPos600: [
 			{
 				type: 'minimal',
 				colPos: 600,
 				content: {
-					header: 'FooterMain header',
-					subheader: 'FooterMain subheader',
+					header: 'MainFooter header',
+					subheader: 'MainFooter subheader',
 					headerLink: '',
 					date: '0',
-					bodytext: '<p>FooterMain text Lorem ipsum dolor sit amet</p>',
+					bodytext: '<p>MainFooter text Lorem ipsum dolor sit amet</p>',
 					gallery: [],
 				},
 			},

@@ -16,7 +16,7 @@ function FeatureV2(props) {
 				contents.map((item, index) => (
 					<section
 						key={index}
-						className={'feature-v2 padding-y-xl ' + sectionClass}
+						className={'feature-v2 padding-y-xl ' + (sectionClass ? sectionClass : '')}
 						id={sectionId}>
 						<div className='container max-width-adaptive-lg'>
 							<div className='grid gap-md'>

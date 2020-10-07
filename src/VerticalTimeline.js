@@ -22,7 +22,7 @@ function VerticalTimeline(props) {
 			<section
 				className={
 					'vertical-timeline position-relative z-index-1 overflow-hidden padding-y-xl ' +
-					sectionClass
+					(sectionClass ? sectionClass : '')
 				}
 				id={sectionId}>
 				<div className='container max-width-adaptive-lg'>

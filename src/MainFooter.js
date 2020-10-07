@@ -18,7 +18,7 @@ function MainFooter(props) {
 
 	return content && content.length ? (
 		<footer
-			className={'main-footer padding-y-lg ' + sectionClass}
+			className={'main-footer padding-y-lg ' + (sectionClass ? sectionClass : '')}
 			id={sectionId}>
 			<div className='container max-width-adaptive-lg'>
 				<div className='grid gap-lg'>

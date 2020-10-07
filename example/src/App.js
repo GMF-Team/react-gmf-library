@@ -133,9 +133,9 @@ const Home = () => {
 			/>
 
 			<MainFooter
-				contents={Data.FooterMain}
+				contents={Data.MainFooter}
 				colPos='colPos600'
-				sectionId='footermain'
+				sectionId='mainfooter'
 				sectionClass=''
 				logo={Logo}
 				link={Link}

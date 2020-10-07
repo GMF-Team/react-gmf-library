@@ -15,7 +15,7 @@ function CardV9(props) {
 
 	return (
 		<section
-			className={'card-v9 padding-y-xl ' + sectionClass}
+			className={'card-v9-section padding-y-xl ' + (sectionClass ? sectionClass : '')}
 			id={sectionId}>
 			<div className='container max-width-adaptive-lg'>
 				<div className='grid gap-xs justify-center'>

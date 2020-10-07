@@ -18,7 +18,7 @@ function FeatureV11(props) {
 						key={index}
 						className={
 							'feature-v11 position-relative z-index-1 ' +
-							sectionClass
+							(sectionClass ? sectionClass : '')
 						}
 						id={sectionId}>
 						<div className='container max-width-adaptive-lg position-relative'>
